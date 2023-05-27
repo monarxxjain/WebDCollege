@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <style>
+        body{
+            background-image: url(backgroundblur.png);
+            background-repeat: no-repeat;
+            background-size:cover;
+            height: 100vmin;
+            /* width: 100vmax; */
+        }
+        #signing
+        {
+            background-color: greenyellow;
+        }
+        #submit
+        {
+            background-color: rgb(9, 19, 27);
+            /* background-color: rgb(1, 43, 77); */
+            color: white;
+            transition: background-color 0.2s, color 0.2s;
+            
+        }
+
+        #submit:hover{
+            background-color: white;
+            color: black;
+        }
+        .box
+        {
+            width: 40vmax;
+            max-height: 90vmin;
+            /* background-color: rgb(211, 225, 255); */
+            background-image: radial-gradient(circle, rgb(255, 255, 255) 50%, rgb(6, 27, 43));
+            border-radius: 2vmin;
+            padding: 4vmin;
+            box-shadow: 0px 0px 10px 1px rgb(192, 192, 192);
+        }
+        #forgot
+        {
+            display: flex;
+            justify-content: end;
+        }
+        #showpass
+        {
+            display: flex;
+            justify-content: start;
+        }
+        #ForgotPass:hover{
+            color: rgb(60, 60, 60);
+            text-decoration: underline;
+        }
+        img
+        {
+            /* height: 50%; */
+            height: 35vmin;
+            margin-left: 9vmax;
+            border-radius: 50%;
+            box-shadow: 0px 0px 200px 1px rgb(255, 255, 255);
+        }
+        #checkbo
+        {
+            /* margin-top: 20px; */
+            margin-right: 8px;
+        }
+
+        #logbtn,#sgnbtn{
+            border-radius: 7px;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+    
+       
+        #button
+        /* {  background-color: rgb(21, 21, 245); */
+        {  background-color: rgb(21, 21, 245);
+            /* margin-left: 1300px; */
+        }
+    </style>
+</head>
+<body>
+    <!-- <button id="button" onClick="window.open(index.html);">HOME PAGE</button> -->
+   
+    <div class="container my-5 box">
+        
+        <div class="row justify-content-center pt-3">
+            <button class="  col-4" onclick="log()" id="logbtn"> Log In</button>
+            <button class="signup col-4" onclick="sign()" id="sgnbtn"> Sign Up</button>
+        </div>
+        <div id="login" >
+            <label class="form-label down mt-3">Username</label>
+            <input type="text" class="form-control" placeholder="Enter your username" id="x">
+            <label class="form-label down mt-3">Password</label>
+            <input type="password" class="form-control" placeholder="Enter your password" id="y">
+            <div id="showpass">
+                <input type="checkbox" id="checkbo" onclick="changestyle()">
+                <span class="form-label down mt-2" id="ShowPass">Show Password</span>
+            </div>
+            <div id="forgot">
+                <button class="btn btn-link-success" id="ForgotPass" onclick="frgtpass()">Forgot Password ?</button>
+            </div>
+            <div id="changehere">
+                <button class="btn btn-outline-dark justify-self-center " id="submit" onclick="logincheck()">Log In</button>
+            </div>
+            <br>
+        <img src="logo.png" alt="" >
+        </div>
+        <div id="passreset">
+            <label class="form-label down">Username</label>
+            <input type="text" class="form-control" placeholder="Enter your username" id="usr_new">
+            <!-- <label class="form-label mt-2 down">DOB</label>
+            <input type="date" class="form-control" placeholder="Enter your DOB" id="dob_new"> -->
+            <label class="form-label mt-2 down">Favourite Animal</label>
+            <input type="text" class="form-control" placeholder="Enter your fav animal" id="animal_new">
+            <label class="form-label mt-2 down">Password</label>
+            <input type="password" class="form-control" placeholder="Enter your password" id="passw_new">
+            <label class="form-label mt-2 down">Retype Password</label>
+            <input type="password" class="form-control" placeholder="Enter your retype password" id="repassw_new">
+            <button class="btn btn-outline-dark mt-5 justify-self-center bg-warning" onclick="newpass()">Reset Password</button>
+        </div>
+        <div id="signup">
+            <label class="form-label mt-2 down" >Email Id</label>
+            <input type="text" class="form-control" id="email_inp" placeholder="Enter your email id">
+            <label class="form-label mt-2 down" >Username</label>
+            <input type="text" class="form-control" id="username_inp" placeholder="Enter a username">
+            <!-- <label class="form-label down" >DOB</label>
+            <input type="date" class="form-control" id="dob_inp"> -->
+            <label class="form-label mt-2 down" >Favoruite Animal</label>
+            <input type="text" class="form-control" id="fav_inp" placeholder="This will be used if you forget your password">
+            <label class="form-label mt-2 down" >Password</label>
+            <input type="password" class="form-control" id="pass_inp" placeholder="Enter a password">
+            <label class="form-label mt-2 down" >Repeat Password</label>
+            <input type="password" class="form-control" placeholder="Write your password again" id="rep_inp">
+            <p class="down">Select the clubs you are in</p>
+            <div class="Club-selector row">
+                <div class="technical col">
+                    <h5>Axios/Technical</h5>
+                    <input type="checkbox" id="webwing" name="technical" value="Web">
+                    <label for="webwing"> Web Wing</label><br>
+                    <input type="checkbox" id="appwing" name="technical" value="App">
+                    <label for="appwing">App Wing</label><br>
+                    <input type="checkbox" id="cpwing" name="technical" value="CP">
+                    <label for="cpwing"> CP Wing</label><br>
+                    <!-- <input type="checkbox" id="mlwing" name="technical" value="ML">
+                    <label for="mlwing"> ML Wing</label><br>
+                    <input type="checkbox" id="fosswing" name="technical" value="FOSS">
+                    <label for="fosswing"> FOSS Wing</label><br> -->
+                </div>
+                <div class="cultural col">
+                    <h5>Cultural</h5>
+                    <input type="checkbox" id="zephyr" name="cultural" value="zephyr">
+                    <label for="zephyr">Zephyr</label><br>
+                    <input type="checkbox" id="estrella" name="cultural" value="estrella">
+                    <label for="estrella">Estrella</label><br>
+                    <input type="checkbox" id="goonj" name="cultural" value="goonj">
+                    <label for="goonj"> Goonj</label><br>
+                    <!-- <input type="checkbox" id="afterdark" name="cultural" value="afterdark">
+                    <label for="afterdark"> Afterdark</label><br>
+                    <input type="checkbox" id="utkrisht" name="cultural" value="utkrisht">
+                    <label for="utkrisht"> Utkrisht</label><br> -->
+                </div>
+                <button class="btn btn-outline-dark mt-2 justify-self-center bg-warning" onclick="add_usr()" id="signing">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        log();
+        function log()
+        {
+            document.getElementById("sgnbtn").style.backgroundColor="white";
+            document.getElementById("logbtn").style.backgroundColor="rgb(1, 43, 77)";
+            document.getElementById("logbtn").style.color="white";
+            document.getElementById("sgnbtn").style.color="rgb(1, 43, 77)";
+            document.getElementById("login").style.display="initial";
+            document.getElementById("signup").style.display="none";
+            document.getElementById("passreset").style.display="none";
+            
+        }
+        function sign()
+        {
+            document.getElementById("sgnbtn").style.backgroundColor="rgb(1, 43, 77)";
+            document.getElementById("logbtn").style.backgroundColor="white";
+            document.getElementById("logbtn").style.color = "rgb(1, 43, 77)";
+            document.getElementById("sgnbtn").style.color = "white";
+            document.getElementById("login").style.display="none";
+            document.getElementById("signup").style.display="initial";
+            document.getElementById("passreset").style.display="none";
+        }
+        class database{
+            constructor(email_id,username,fav_animal,pass,rep_pass)
+            {
+                this.email_id=email_id;
+                this.username=username;
+                this.fav_animal=fav_animal;
+                this.pass=pass;
+                this.rep_pass=rep_pass;
+                // this.cult = cult;
+                // this.tech = tech;
+            }
+        }
+        var usr_cnt=[];
+        function add_usr()
+        {
+            
+            let a=document.getElementById("email_inp").value;
+            let b=document.getElementById("username_inp").value;
+            // let c=document.getElementById("dob_inp").value;
+            let d=document.getElementById("fav_inp").value;
+            let e=document.getElementById("pass_inp").value;
+            let f=document.getElementById("rep_inp").value;
+            
+            if(a!="" || b!=""  || d!="" || e!="" || f!="")
+            {
+                if(e==f)
+                {
+                    let obj=new database(a,b,d,e,f);
+                    usr_cnt.push(obj);
+                    console.log(usr_cnt);
+                    var symb=0,caps=0;
+                    for(let i=0;i<e.length;i++)
+                    {
+                        if(e[i]=='@' || e[i]=='$' || e[i]=='%' || e[i]=='#' || e[i]=='!' || e[i]=='%' || e[i]=='^' || e[i]=='&' || e[i]=='*' )
+                        {
+                            symb++;
+                        }
+                        if(e[i]>='A' && e[i]<='Z')
+                        {
+                            caps++;
+                        }
+                    }
+                    if(symb==0 || caps==0)
+                    {
+                        alert("Password must have atleast one capital letter and one symbol!")
+                    }
+                    else
+                    {
+                        if(a.indexOf("@")>0 && (a.indexOf(".com")>0 || a.indexOf(".ac.in")>0))
+                        {
+                            alert("Signed Up Successfully\nRedirecting to Log In page")
+                            log();
+                        }
+                        else
+                        {
+                            alert("Invalid Email format");
+                        }
+                        
+                    }
+                }
+                else
+                {
+                    alert("Both the passwords should be same!");
+                }
+                
+            }
+            else
+            {
+                alert("Please fill all details first!");
+            }
+        }
+    
+        function logincheck()
+        {
+            let a=document.getElementById("x").value;
+            let b=document.getElementById("y").value;
+            for(let i=0;i<usr_cnt.length;i++)
+            {
+                if(usr_cnt[i].username==a && usr_cnt[i].pass==b)
+                {
+                    let myAnchor = document.createElement('a');
+                    let textToLink = document.createTextNode("Log in");
+                    myAnchor.appendChild(textToLink);
+                    myAnchor.href = "verify.html";
+                    document.getElementById("changehere").appendChild(myAnchor);
+                    document.getElementById("submit").style.display="none";
+                    document.getElementById("changehere").setAttribute("class","btn btn-outline-success justify-self-center bg-warning");
+                    alert("Login Successfull.Going to verification.");
+
+		// navigate to another page after user presses OK
+		if (confirm("Just a second")) {
+		  window.location = "/akshat1";
+		}
+                }
+                else
+                {
+                    alert("Invalid Username or Password");
+                }
+                console.log(usr_cnt);
+            }
+        }
+
+        function frgtpass()
+        {
+            document.getElementById("login").style.display="none";
+            document.getElementById("signup").style.display="none";
+            document.getElementById("passreset").style.display="initial";
+        }
+
+        function newpass()
+        {
+            let a=document.getElementById("usr_new").value;
+            
+            let c=document.getElementById("animal_new").value;
+            let d=document.getElementById("passw_new").value;
+            let e=document.getElementById("repassw_new").value;
+            if(e==d)
+            {
+                for(let i=0;i<usr_cnt.length;i++)
+                {
+                    if(usr_cnt[i].username==a && usr_cnt[i].fav_animal==c)
+                    {
+                        alert("Password changed successfully \n Redirecting to login up page!");
+                        for(let i=0;i<usr_cnt.length;i++)
+                        {
+                            if(usr_cnt[i].username==a)
+                            {
+                                usr_cnt[i].pass=d;
+                                usr_cnt[i].rep_pass=e;
+                            }
+                        }
+                        log();
+                    }
+                    else 
+                    {
+                        alert(" Account detection Error");
+                    }
+                }
+            }
+            else
+            {
+                alert("Both the passwords should be same!");
+            }
+        }
+        var countingtick=0;
+        function changestyle()
+        {
+            if(countingtick%2==0)
+            {
+                document.getElementById("y").setAttribute("type","text");
+                countingtick++;
+            }
+            else{
+                document.getElementById("y").setAttribute("type","password");
+                countingtick++;
+            }
+            
+        }
+
+    </script>
+    <script>
+        
+        const signBtn = document.querySelector('#signing');
+        signBtn.addEventListener('click', postForm);
+        
+        async function postForm() {
+            const emailId = document.getElementById('email_inp').value;
+            const userName = document.getElementById('username_inp').value;
+            const password = document.getElementById('pass_inp').value;
+            const fav_animal = document.getElementById('fav_inp').value;
+            
+            let formData = {
+                emailId,
+                userName,
+                password,
+                fav_animal,
+            }; 
+            const resp = await fetch("/post/form", {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+        //    console.log("hello : " + email_id);
+            console.log(JSON.stringify(formData));
+
+        }
+    </script>
+</body>
+</html>

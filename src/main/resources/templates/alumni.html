@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #new{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="monark">
+        <button onclick="getdata()">Get Users</button>
+        <div>
+            <p>Name : monarkjain</p>
+            <p>Email : monarkjain@gmail.com</p>
+            <p>Password : A@</p>
+            <p>Favourite Animal : dog</p>
+        </div>
+        <br>
+        <br>
+        <div>
+            <p>Name : janish jain</p>
+            <p>Email : janishjain@gmail.com</p>
+            <p>Password : H!</p>
+            <p>Favourite Animal : cat</p>
+        </div>
+        <br>
+        <br>
+        <div>
+            <p>Name : Monark</p>
+            <p>Email : jain@gmail.com</p>
+            <p>Password : 1234</p>
+            <p>Favourite Animal : cat</p>
+        </div>
+        <br>
+        <br>
+        <div id="new">
+            <p>Name : Aarjav</p>
+            <p>Email : aarjavjain@gmail.com</p>
+            <p>Password : 4321</p>
+            <p>Favourite Animal : bat</p>
+        </div>
+        <br>
+        <br>
+    </div>
+</body>
+
+<script>
+
+     function getdata() {
+        document.getElementById('new').style.display="block";
+    }
+
+</script>
+
+</html>

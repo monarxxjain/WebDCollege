@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Indian institute Of Information Technology Lucknow</title>
+
+
+	<link rel="icon" type="image/png" sizes="56x56"
+		href="data:image/png;base64,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">
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/responsive.css">
+</head>
+<style>
+	.logo {
+		width: 60px;
+		height: 30px;
+	}
+
+	@media (max-width: 650px) {
+		.logo {
+			width: 60px;
+			height: 50px;
+		}
+
+	}
+
+	;
+
+	@media (max-width: 650px) {
+		.placement {
+			position: absolute;
+			left: auto;
+			transform: scale(0.8);
+		}
+	}
+</style>
+
+
+<body>
+	<div class="main-page-wrapper">
+		<header class="theme-main-header">
+			<div class="container">
+				<a href="/index" class="logo float-left tran4s"><img
+						src="data:image/png;base64,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"
+						alt="Logo">
+				</a>
+				
+
+				<nav class="navbar float-right theme-main-menu">
+
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+							data-target="#navbar-collapse-1" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							Menu
+							<i class="fa fa-bars" aria-hidden="true"></i>
+						</button>
+					</div>
+
+					<div class="collapse navbar-collapse" id="navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="/index">HOME</a></li>
+							
+							<li><a href="/gallery">GALLERY</a></li>
+
+							<li><a href="/alumni">ALUMNIi</a></li>
+
+							<li><a href="/contactus">CONTACT US</a></li>
+
+							<li><a href="/aboutus">ABOUT US</a></li>
+
+							<li><a href="/">LOGOUT</a></li>
+						</ul>
+
+
+					</div>
+				</nav>
+			</div>
+		</header>
+
+
+
+		<section class="inner-page-banner">
+			<div class="opacity">
+				<div class="container">
+					<h2>Indian institute Of Information Technology Lucknow</h2>
+					<ul>
+
+						<li>(An Institute of National Importance by the Act of Parliament)</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+
+		<div id="GbpecTable">
+
+
+			<article class="blog-details-page">
+				<div class="container">
+					<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 p-fix">
+						<div class="blog-details-post-wrapper">
+							<img src="https://images.shiksha.com/mediadata/images/1609328474php5nBonF.jpeg" alt="Image"
+								style="width:150%;height:130%;">
+							<div class="post-heading">
+								<h4>Introduction</h4>
+
+							</div>
+							<ul>
+								<p>Indian Institute of Information Technology, Lucknow (IIIT Lucknow) is one of the 20
+									IIITs being set up by the Central Government in Public Private Partnership (PPP)
+									mode. IIIT Lucknow admitted its first batch of B. Tech. in Information Technology
+									with an intake of 50 students w.e.f. the academic session 2015-16. It currently
+									offers all the amenities ,academic and non-academic to its students that can help
+									them flourish and serve the nation with all their apprehension in the various fields
+									of technology. The admission is made through central counselling of candidates who
+									qualify in JEE (Mains).
+
+									The Institute is being set up with the financial contributions of MHRD, Govt. of
+									India, Govt. of Uttar Pradesh, and U. P. Electronics Corporation Ltd. as industry
+									partners. The mission of IIIT Lucknow is to be a unique and world class nucleating
+									“Apex Center of Excellence” in the area of Information Technology so as to enhance
+									India’s Technological strength in Information Technology . IIIT seeks to derive its
+									strength from a linkage with sound Indian traditions of centuries past, and sets out
+									to create knowledge-based resources in regional languages.</p>
+							</ul>
+							<h6>From Director's Desk</h6>
+							<p>Welcome to the Indian Institute of Information Technology, Lucknow, an institute of
+								national importance. IIITs have a tradition of producing best-in-class human resources
+								in multi-dimensional aspects of Engineering and Management. IIIT Lucknow is an emerging
+								institute that takes this initiative further in leaps and bounds by providing
+								world-class education in Engineering, Technology, and Business. We have a team of best
+								educators and industrialists who teach contemporary topics and bring real-life scenarios
+								to the classroom. With this kind of training, our students enter the real world with
+								full awareness and become adept in problem-solving.
+
+								Graduating from a college is like a venture where students invest their efforts and
+								dreams in anticipation of a life-transforming future. It is, therefore, essential that
+								they choose the right career path. While you consider various courses that we offer, our
+								support team will help you make an optimal choice to achieve your goals. Apart from the
+								on-campus BTech., MTech. and PhD programmes, we are launching six off-campus programmes
+								in IT and allied areas in August 2020. Besides dedicated teaching, we also promote
+								quality research and life-long learning.
+
+								Our campus is based in the IT city of Lucknow which will soon be alive with
+								multinational companies. We have invited many companies to set up their centres in our
+								campus too and we are open to more such collaborations in near future. We provide a
+								conducive environment to all students and we have a zero-tolerance policy against any
+								kind of ragging practice or gender insensitivity.
+
+								I invite young and aspiring individuals to connect with us. I also congratulate all the
+								students who chose to learn further and achieve more. Cheers to all of you who took the
+								first step to enriched experience.
+
+								Dr. Arun Mohan Sherry
+								Founding Director, IIIT Lucknow</p>
+							<div class="row">
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+									<p><i class="fa fa-quote-left" aria-hidden="true"></i>At this fast evolving
+										institute, our focus is on providing an ambience conducive to developing a
+										career rather than to just getting a job. I am delighted to inform you that, the
+										college has earned its place amongst the upcoming institutes with a potential to
+										develop into a world-class centre of higher technical education over the coming
+										years. I wish all my students, a great success in all their endeavours.<i
+											class="fa fa-quote-right" aria-hidden="true"></i></p>
+								</div>
+								<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+									<img style="height:231px;width:360px;"
+										src="https://iiitl.ac.in/wp-content/uploads/2019/09/dr-arun-sherry-dp.jpg"
+										alt="Image">
+								</div>
+							</div>
+
+							<p>To address the challenges faced by the Indian IT industry and growth of the domestic IT
+								market, the Ministry of Education, Government of India established twenty Indian
+								Institutes of Information Technology (IIITs), on a Public Private Partnership (PPP)
+								basis. The partners in setting up the IIITs are Ministry of Education, Governments of
+								the respective States where each IIIT will be established, and industry partners. </p>
+							<div class="clear-fix list-img-wrapper">
+								<img src="images/home/home1.jpg" alt="Image" class="float-left">
+								<ul class="float-left">
+									<li><a href="#" class="tran3s"><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+											Quality Education.</a></li>
+									<li><a href="#" class="tran3s"><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+											Modern labs facilities.</a></li>
+									<li><a href="#" class="tran3s"><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+											Highly Qualified Teachers.</a></li>
+									<li><a href="#" class="tran3s"><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+											Supportive seniors.</a></li>
+									<li><a href="#" class="tran3s"><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+											Different fest and Socities.</a></li>
+									<li><a href="#" class="tran3s"><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+											Positive growth rate.</a></li>
+									<li><a href="#" class="tran3s"><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+											Government Institution.</a></li>
+								</ul>
+							</div>
+							<div id="skill-section">
+								<div class="container">
+									<div class="clear-fix">
+										<div class="col-lg-0 col-md-0 col-sm-0 col-xs-1">
+											<h1 class="placement"
+												style="color:white;transform: scale(0.8);position:relative;margin-left:1em">
+												PLACEMENTS</h1>
+
+										</div>
+
+										<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+											<div class="skills-progress skills">
+												<div class="habilidades_contenedor">
+													<div class="codeconSkills">
+														<div class="codeconSkillbar">
+															<div class="skill-text">
+																<span class="codeconSkillArea">2017</span>
+															</div>
+															<div class="skillBar" data-percent="50%">
+																<span class="PercentText">18.42LPA</span>
+															</div>
+														</div>
+														<div class="codeconSkillbar">
+															<div class="skill-text">
+																<span class="codeconSkillArea ">2018</span>
+
+															</div>
+															<div class="skillBar" data-percent="60%">
+																<span class="PercentText">18.65LPA</span>
+															</div>
+														</div>
+														<div class="codeconSkillbar">
+															<div class="skill-text">
+																<span class="codeconSkillArea">2019</span>
+
+															</div>
+															<div class="skillBar" data-percent="70%">
+																<span class="PercentText">21LPA</span>
+															</div>
+														</div>
+														<div class="codeconSkillbar">
+															<div class="skill-text">
+																<span class="codeconSkillArea">2020</span>
+
+															</div>
+															<div class="skillBar" data-percent="80%">
+																<span class="PercentText">23LPA</span>
+															</div>
+														</div>
+														<div class="codeconSkillbar">
+															<div class="skill-text">
+																<span class="codeconSkillArea">2021</span>
+
+															</div>
+															<div class="skillBar" data-percent="90%">
+																<span class="PercentText ">26LPA</span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+
+
+
+
+
+
+							<div class="comment-area">
+								<div class="comment-wrapper">
+								</div> <!-- /.comment-wrapper -->
+							</div> <!-- /.comment-area -->
+							<div class="post-comment">
+								<div class="row">
+								</div> <!-- /.row -->
+							</div> <!-- /.post-comment -->
+						</div> <!-- /.blog-details-post-wrapper -->
+					</div> <!-- /.col- -->
+
+
+
+
+
+
+
+
+					<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+					<script>
+						$(document).ready(function () {
+							$("#TableInput").on('click', function () {
+
+								var value = $(this).val().toLowerCase();
+								$("#GbpecTable div").filter(function () {
+									$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+								});
+
+
+
+							});
+						});
+					</script>
+
+					<div class="col-lg-4 col-md-4 col-sm-8 col-xs-12 p-fix">
+						<aside>
+
+
+
+
+
+
+
+
+							<form class="sidebar-search-box">
+
+								<input id="TableInput" type="text" placeholder="Search..." name="q">
+							</form>
+
+
+
+
+
+
+
+
+							<!-- <a style = "padding:10px 40%;background-color: firebrick; color: floralwhite;display: inherit;" href="https://translate.google.com/translate?hl=en&sl=en&tl=hi&u=https%3A%2F%2Fvishalgbpec.hashbase.io%2F"><i class="fa fa-search" aria-hidden="true"></i>Google Translate</a></button> -->
+
+							<div class="sidebar-news-list">
+
+								<h6>Latest News</h6>
+								<ul>
+									<li><a href="https://iiitl.ac.in/index.php/2021/12/07/https-iiitl-ac-in-index-php-crypto-news/"
+											class="tran3s active"><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+											Crypto News February 01,2023</a></li>
+									<li><a href="https://iiitl.ac.in/index.php/2023/02/02/congratulations-dr-bindu-singh-assistant-professor-and-shefali-srivastava-research-scholar-iiit-lucknow-on-being-awarded-the-best-paper-first-place-at-the-international-conference-vision-20/"
+											class="tran3s"><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+											Congratulations, Dr. Bindu Singh, Assistant professor, and Shefali
+											Srivastava, Research Scholar, IIIT Lucknow, on being awarded the Best Paper
+											(First Place) at the International Conference “VISION 2050” organized by
+											NIFTEM, Haryana
+										</a></li>
+									<li><a href="https://iiitl.ac.in/index.php/2023/01/24/list-of-provisionally-selected-candidates-in-ph-d-admissions-of-january-2023/"
+											class="tran3s"><i class="fa fa-hand-o-right" aria-hidden="true"></i> List of
+											Provisionally Selected Candidates in Ph.D Admissions of January-2023.</a>
+									</li>
+									<li><a href="https://iiitl.ac.in/index.php/2023/01/24/iiit-lucknow-niper-ink-pact-to-promote-exchange-of-information/"
+											class="tran3s"><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+											Hindustan Times :19 January 2023
+											IIIT-Lucknow, NIPER ink pact to promote exchange of information</a></li>
+									<li><a href="https://iiitl.ac.in/index.php/2022/04/29/times-of-india-24-apr-2022iiit-l-confers-medals-on-students-of-three-batches-2/"
+											class="tran3s"><i class="fa fa-hand-o-right" aria-hidden="true"></i> Times
+											of India: 24 Apr. 2022
+											IIIT-L confers medals on students of three batches</a></li>
+									<li><a href="https://iiitl.ac.in/index.php/2022/04/19/the-times-of-india-19-apr-2022got-jobs-during-covid-iiit-l-students-ahead-of-convocation/"
+											class="tran3s"><i class="fa fa-hand-o-right" aria-hidden="true"></i> The
+											Times of India: 19 Apr. 2022
+											Got jobs during Covid: IIIT-L students ahead of convocation</a></li>
+
+								</ul>
+							</div> <!-- /.sidebar-news-list -->
+
+							<div class="sidebar-calendar">
+								<h6>Calendar</h6>
+								<div class="monthly" id="blog-calendar"></div>
+
+
+
+
+
+
+
+
+								<!--Add buttons to initiate auth sequence and sign out-->
+								<button id="authorize_button" style="display: none;">Authorize</button>
+								<button id="signout_button" style="display: none;">Sign Out</button>
+
+								<!-- <pre id="content" style="white-space: pre-wrap;"></pre> -->
+
+								<script type="text/javascript">
+									// Client ID and API key from the Developer Console
+									var CLIENT_ID = '<YOUR_CLIENT_ID>';
+									var API_KEY = 'AIzaSyDBknERs8E65PyZXC2ePO0PYG0u9TX2oqw';
+
+									// Array of API discovery doc URLs for APIs used by the quickstart
+									var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+
+									// Authorization scopes required by the API; multiple scopes can be
+									// included, separated by spaces.
+									var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+
+									var authorizeButton = document.getElementById('authorize_button');
+									var signoutButton = document.getElementById('signout_button');
+
+									/**
+									 *  On load, called to load the auth2 library and API client library.
+									 */
+									function handleClientLoad() {
+										gapi.load('client:auth2', initClient);
+									}
+
+									/**
+									 *  Initializes the API client library and sets up sign-in state
+									 *  listeners.
+									 */
+									function initClient() {
+										gapi.client.init({
+											apiKey: API_KEY,
+											clientId: CLIENT_ID,
+											discoveryDocs: DISCOVERY_DOCS,
+											scope: SCOPES
+										}).then(function () {
+											// Listen for sign-in state changes.
+											gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+
+											// Handle the initial sign-in state.
+											updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+											authorizeButton.onclick = handleAuthClick;
+											signoutButton.onclick = handleSignoutClick;
+										}, function (error) {
+											appendPre(JSON.stringify(error, null, 2));
+										});
+									}
+
+									/**
+									 *  Called when the signed in status changes, to update the UI
+									 *  appropriately. After a sign-in, the API is called.
+									 */
+									function updateSigninStatus(isSignedIn) {
+										if (isSignedIn) {
+											authorizeButton.style.display = 'none';
+											signoutButton.style.display = 'block';
+											listUpcomingEvents();
+										} else {
+											authorizeButton.style.display = 'block';
+											signoutButton.style.display = 'none';
+										}
+									}
+
+
+									function handleAuthClick(event) {
+										gapi.auth2.getAuthInstance().signIn();
+									}
+
+
+									function handleSignoutClick(event) {
+										gapi.auth2.getAuthInstance().signOut();
+									}
+
+
+									function appendPre(message) {
+										var pre = document.getElementById('content');
+										var textContent = document.createTextNode(message + '\n');
+										pre.appendChild(textContent);
+									}
+
+
+									function listUpcomingEvents() {
+										gapi.client.calendar.events.list({
+											'calendarId': 'primary',
+											'timeMin': (new Date()).toISOString(),
+											'showDeleted': false,
+											'singleEvents': true,
+											'maxResults': 10,
+											'orderBy': 'startTime'
+										}).then(function (response) {
+											var events = response.result.items;
+											appendPre('Upcoming events:');
+
+											if (events.length > 0) {
+												for (i = 0; i < events.length; i++) {
+													var event = events[i];
+													var when = event.start.dateTime;
+													if (!when) {
+														when = event.start.date;
+													}
+													appendPre(event.summary + ' (' + when + ')')
+												}
+											} else {
+												appendPre('No upcoming events found.');
+											}
+										});
+									}
+
+								</script>
+
+								<script async defer src="https://apis.google.com/js/api.js"
+									onload="this.onload=function(){};handleClientLoad()"
+									onreadystatechange="if (this.readyState === 'complete') this.onload()">
+									</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+							</div> <!-- /.sidebar-calendar -->
+
+							<div class="sidebar-archives">
+								<h6>Archives</h6>
+								<ul>
+									<li><a href="#" class="tran3s active"><i class="fa fa-hand-o-right"
+												aria-hidden="true"></i> February 2017</a></li>
+									<li><a href="#" class="tran3s"><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+											January 2017</a></li>
+									<li><a href="#" class="tran3s"><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+											November 2016</a></li>
+									<li><a href="#" class="tran3s"><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+											June 2016</a></li>
+									<li><a href="#" class="tran3s"><i class="fa fa-hand-o-right" aria-hidden="true"></i>
+											May 2016</a></li>
+								</ul>
+							</div> <!-- /.sidebar-archives -->
+
+							<div class="sidebar-recent-post">
+								<h6>RECENT POST</h6>
+
+								<div class="recent-single-post clear-fix">
+									<img src="https://thumbs.dreamstime.com/b/rpa-robotic-process-automation-artificial-intelligence-technology-154440557.jpg"
+										alt="Image" class="float-left">
+									<div class="post float-left">
+										<a href="http://www.iccm2018.iaasse.org/" class="tran3s">Chapter Contribution-
+											“Wireless Body Area Networks – Design Issues and Security Challenges” in
+											book ‘Image processing and intelligent Computing systems’, J. Jangir, K.
+											Tripathi,Deepshikha Agarwal et.al., CRC Press- Taylor & Francis</a>
+										<span> 28 December, 2022</span>
+									</div> <!-- /.post -->
+								</div> <!-- /.recent-single-post -->
+
+								<div class="recent-single-post clear-fix">
+									<img src="https://media.istockphoto.com/id/1344021555/photo/blocks-with-locks-on-dark-blue-background-future-innovation-blockchain-technology-token-money.jpg?b=1&s=170667a&w=0&k=20&c=CgTveKWIUY7mVdbvRqdpx93afQ35MuLn5MGZIVEOYAU="
+										alt="Image" class="float-left">
+									<div class="post float-left">
+										<a href="https://inceptum2018.herokuapp.com/" class="tran3s">A. Tyagi, S.
+											Dhanajayan, Deepshikha Agarwal et.al., “Blockchain- IoT based applications :
+											Opportunities & challenges for Industry 4.0 & Society 5.0”, MDPI Sensors</a>
+										<span> Jan 2023</span>
+									</div> <!-- /.post -->
+								</div> <!-- /.recent-single-post -->
+
+
+
+								<div class="recent-single-post clear-fix">
+									<img src="https://edurev.gumlet.io/ApplicationImages/Temp/59_3286cbae-92d8-4767-a7c8-80278ff80fff_lg.jpg?w=360&dpr=2.6"
+										alt="Image" class="float-left">
+									<div class="post float-left">
+										<a href="#" class="tran3s">M. Ashhad, U. Goenka, A. Jagetia, P. Akhtari, S.
+											Ambat, M. Samuel, “Improved Vehicle Sub-type Classification for Acoustic
+											Traffic Monitoring” , accepted for presentation and publication in
+											proceedings at 29th National Conference on Communications (NCC-2023) jointly
+											organized by IIT Guwahati, IIT Patna and IIT Ropar, 23—26 February 2023.</a>
+										<span>1st December 2022</span>
+									</div> <!-- /.post -->
+								</div> <!-- /.recent-single-post -->
+								<!--</div>--> <!-- /.sidebar-recent-post -->
+
+
+								<div class="recent-single-post clear-fix">
+									<img src="https://ihmyamunanagar.com/wp-content/uploads/2021/02/acadcalen.jpg"
+										alt="Image" class="float-left">
+									<div class="post float-left">
+										<a href="https://iiitl.ac.in/wp-content/uploads/2023/01/Academic_Calendar_2023.pdf"
+											class="tran3s">Academic Calender</a>
+										<span>1 January,2023</span>
+									</div> <!-- /.post -->
+								</div> <!-- /.recent-single-post -->
+							</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+							<!--
+							<div class="sidebar-tags">
+								<h6>Tags</h6>
+								<ul>
+									<li><a href="#" class="tran3s">Development</a></li>
+									<li><a href="#" class="tran3s">Advertising</a></li>
+									<li><a href="#" class="tran3s">Design</a></li>
+									<li><a href="#" class="tran3s">Seo</a></li>
+									<li><a href="#" class="tran3s">Marketing</a></li>
+									<li><a href="#" class="tran3s">html</a></li>
+									<li><a href="#" class="tran3s">ppc</a></li>
+									<li><a href="#" class="tran3s">Business</a></li>
+									<li><a href="#" class="tran3s">WordPress</a></li>
+									<li><a href="#" class="tran3s">Optimization</a></li>
+								</ul>
+							</div> <!-- /.sidebar-tags -->
+						</aside>
+					</div> <!-- /.col- -->
+				</div> <!-- /.container -->
+			</article>
+
+
+
+
+			<!--
+			=====================================================
+				Footer
+			=====================================================
+			-->
+
+
+
+		</div>
+
+
+		<!-- Footer -->
+		<footer class="bg1">
+			<div class="container p-t-40 p-b-70">
+				<div class="row">
+					<div class="col-sm-6 col-md-4 p-t-50">
+						<!-- - -->
+						<h4 class="txt13 m-b-33">
+							Contact Us
+						</h4>
+
+						<ul class="m-b-70">
+							<li class="txt14 m-b-14">
+								<i class="fa fa-map-marker fs-16 dis-inline-block size19" aria-hidden="true"></i>
+								Indian Institute Of Information Technology Lucknow 226002
+							</li>
+
+							<li class="txt14 m-b-14">
+								<i class="fa fa-phone fs-16 dis-inline-block size19" aria-hidden="true"></i>
+								094153 95066
+							</li>
+							<br>
+							<li class="txt14 m-b-14">
+								<i class="fa fa-envelope fs-13 dis-inline-block size19" aria-hidden="true"></i>
+								director@iiitl.ac.in
+							</li>
+						</ul>
+
+						<!-- - -->
+						<h4 class="txt13 m-b-32">
+							Opening Times
+						</h4>
+
+						<ul>
+							<li class="txt14">
+								09:30 AM – 5:00 PM
+							</li>
+
+							<li class="txt14">
+								Working Days
+							</li>
+						</ul>
+					</div>
+
+					<div class="col-sm-6 col-md-4 p-t-50">
+						<!-- - -->
+						<h4 class="txt13 m-b-33">
+							Useful Links
+						</h4>
+
+						<div class="m-b-25">
+							<!--		<span class="fs-13 color2 m-r-5">
+								<i class="fa fa-twitter" aria-hidden="true"></i>
+							</span>-->
+							<a href="#" class="txt15">
+								Academic Calendar
+
+							</a>
+							<br>
+							<a href="#" class="txt15">
+								Course Structure
+							</a>
+							<br>
+							<a href="#" class="txt15">
+								List of Holidays
+							</a><br>
+							<a href="#" class="txt15">
+								Official Forms & Format
+							</a><br>
+							<a href="#" class="txt15">
+								Fee Structure
+
+							</a>
+							<br>
+							<a href="#" class="txt15">
+								Seat Matrix
+							</a>
+
+						</div>
+					</div>
+
+
+
+
+
+
+
+					<script>
+						(function () {
+							"use strict";
+
+							//alert('It is best to view this on desktop.');
+
+							const closeViewer = function () {
+								let overlay = document.getElementsByClassName('overlay')[0],
+									window = document.getElementsByClassName('window')[0];
+
+								overlay.classList.remove('show');
+								window.classList.remove('show');
+
+								setTimeout(function () {
+									overlay.parentNode.removeChild(overlay);
+									window.parentNode.removeChild(window);
+								}, 200);
+							}
+
+							const imageViewer = function () {
+								let overlay = document.createElement('div'),
+									window = document.createElement('div'),
+									img = document.createElement('img'),
+									hint = document.createElement('span');
+
+								overlay.classList.add('overlay');
+								window.classList.add('window');
+
+								img.src = this.style.backgroundImage.slice(4, -1).replace(/"/g, '');
+								hint.className = 'description';
+								hint.appendChild(document.createTextNode('Click / Tap outside of the image to close the preview.'));
+
+								window.appendChild(img);
+								window.appendChild(hint);
+
+								document.getElementsByClassName('viewer')[0].appendChild(overlay);
+								document.getElementsByClassName('viewer')[0].appendChild(window);
+
+								overlay.addEventListener('click', closeViewer);
+
+								setTimeout(function () {
+									overlay.classList.add('show');
+									window.classList.add('show');
+								}, 10);
+							}
+
+							let images = document.querySelectorAll('.vishal');
+							images.forEach(function (img) {
+								img.addEventListener('click', imageViewer);
+							});
+						})();
+					</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<div class="col-sm-6 col-md-4 p-t-50">
+						<!-- - -->
+						<h4 class="txt13 m-b-38">
+							Quick Links
+						</h4>
+
+						<ul>
+							<li>TENDER</li><br>
+							<li>RTI</li><br>
+							<li>Seat Matrix</li>
+						</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						<div id="loader-wrapper">
+							<div id="preloader_1">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+							</div>
+						</div>
+
+
+
+						<!-- Scroll Top Button -->
+						<button class="scroll-top tran3s p-color-bg">
+							<i class="fa fa-long-arrow-up" aria-hidden="true"></i>
+						</button>
+
+
+
+
+						<!-- Js File_________________________________ -->
+
+						<!-- j Query -->
+						<script type="text/javascript" src="vendor/jquery.2.2.3.min.js"></script>
+
+						<!-- Bootstrap JS -->
+						<script type="text/javascript" src="vendor/bootstrap/bootstrap.min.js"></script>
+
+						<!-- Vendor js _________ -->
+
+						<!-- owl.carousel -->
+						<script type="text/javascript" src="vendor/owl-carousel/owl.carousel.min.js"></script>
+						<!-- mixitUp -->
+						<script type="text/javascript" src="vendor/jquery.mixitup.min.js"></script>
+						<!-- Progress Bar js -->
+						<script type="text/javascript" src="vendor/skills-master/jquery.skills.js"></script>
+						<!-- Validation -->
+						<script type="text/javascript" src="vendor/contact-form/validate.js"></script>
+						<script type="text/javascript" src="vendor/contact-form/jquery.form.js"></script>
+						<!-- Calendar js -->
+						<script type="text/javascript" src="vendor/monthly-master/js/monthly.js"></script>
+
+
+						<!-- Theme js -->
+						<script type="text/javascript" src="js/theme.js"></script>
+						<script type="text/javascript" src="js/map-script.js"></script>
+
+					</div> <!-- /.main-page-wrapper -->
+</body>
+
+</html>
