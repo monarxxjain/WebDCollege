@@ -36,42 +36,38 @@ public class Mycontroller {
     }
 
     @GetMapping("/gallery") 
-    public String galleryMap(Model model) {
-        return "gallery";
-    }
-    @GetMapping("/newgallery") 
     public String newgalleryMap(Model model) {
         return "newGallery";
     }
 
     @GetMapping("/gallery/estrella") 
     public String estrellaMap(Model model) {
-        return "estrella";
+        return "newEstrella";
     }
 
     @GetMapping("/gallery/zephyr") 
     public String zephyrMap(Model model) {
-        return "zephyr";
+        return "newZephyr";
     }
 
     @GetMapping("/gallery/afterdark") 
     public String afterdarkMap(Model model) {
-        return "afterdark";
+        return "newAfterdark";
     }
 
     @GetMapping("/gallery/goonj") 
     public String goonjMap(Model model) {
-        return "goonj";
+        return "newGoonj";
     }
 
     @GetMapping("/gallery/utkrisht") 
     public String utkrishtMap(Model model) {
-        return "utkrisht";
+        return "newUtkrisht";
     }
 
     @GetMapping("/gallery/crotonia") 
     public String crotoniaMap(Model model) {
-        return "gallery";
+        return "newCrotonia";
     }
 
     @GetMapping("/aboutus") 
