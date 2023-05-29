@@ -39,6 +39,10 @@ public class Mycontroller {
     public String galleryMap(Model model) {
         return "gallery";
     }
+    @GetMapping("/newgallery") 
+    public String newgalleryMap(Model model) {
+        return "newGallery";
+    }
 
     @GetMapping("/gallery/estrella") 
     public String estrellaMap(Model model) {
