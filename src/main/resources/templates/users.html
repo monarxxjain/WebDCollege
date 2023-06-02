@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <!-- <button onclick="window.location.href='/get/users';">Hello</button> -->
+    <button onclick="getdata()">Hello</button>
+    <div class="all" id="bigDiv" style="display: flex; ">    
+
+    </div>
+
+</body>
+
+<script>
+
+    function getdata() {
+        // document.getElementById('new').style.display="block";
+        // let box = document.getElementById('bigDiv')
+
+        // let div = document.createElement('div')
+        const users = fetch("/get/users")
+        users
+        .then((res) => {
+                // console.log(res.json());
+                return res.json();
+        })   
+        .then((data) => {
+            console.log(data);
+            useData(data);
+        })
+
+    }
+
+    function useData(data){
+        let box = document.getElementById('bigDiv')
+        // console.log(data.length);
+        for(let i=0;i<data.length;i++){
+            // console.log(data[i].userName);
+            let section = document.createElement('div');
+            section.innerHTML = `
+            
+            <p>Name of User is : ${data[i].userName}</p>
+            <p>Email of User is : ${data[i].emailId}</p>
+            <p>Password of User is : ${data[i].password}</p>
+            <p>Favourite Animal of User is : ${data[i].fav_animal}</p>
+            `;
+            box.appendChild(section);
+        }
+        
+        // for (const x in data[i]) {
+        //     console.log(`${x}: ${data[i][x]}`);
+        // }
+
+        
+    }
+
+</script>
+
+</html>

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hello.hewwbf.Model.UserData;
 import com.hello.hewwbf.Service.UserServiceImpl;
@@ -80,17 +81,18 @@ public class Mycontroller {
         return "contactus";
     }
 
+    @GetMapping("/users")
+    public String alumniMap(Model model) {
+        return "users";
+    }
+
+    @ResponseBody
     @PostMapping("/post/form")
     public void postForm(@RequestBody UserData userData){
         this.userServiceImpl.postData(userData);
     }
 
-
-    @GetMapping("/alumni")
-    public String alumniMap(Model model) {
-        return "alumni";
-    }
-
+    @ResponseBody
     @GetMapping("/get/users")
     public List<UserData> getData(){
         return this.userServiceImpl.getall();
