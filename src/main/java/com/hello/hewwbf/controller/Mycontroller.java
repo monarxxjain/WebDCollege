@@ -82,7 +82,7 @@ public class Mycontroller {
     }
 
     @GetMapping("/users")
-    public String alumniMap(Model model) {
+    public String usersMap(Model model) {
         return "users";
     }
 
