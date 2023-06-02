@@ -9,106 +9,17 @@
 
             
 
-
-
-
-
 body{
-            background-image: url(backgroundblur.png);
-            background-repeat: no-repeat;
-            background-size:cover;
-            height: 100vmin;
-            /* width: 100vmax; */
-        }
-        #signing
-        {
-            background-color: greenyellow;
-        }
-        #submit
-        {
-            background-color: rgb(9, 19, 27);
-            /* background-color: rgb(1, 43, 77); */
-            color: white;
-            transition: background-color 0.2s, color 0.2s;
-            
-        }
-
-        #submit:hover{
-            background-color: white;
-            color: black;
-        }
-        .box
-        {
-            width: 40vmax;
-            max-height: 90vmin;
-            /* background-color: rgb(211, 225, 255); */
-            background-image: radial-gradient(circle, rgb(255, 255, 255) 50%, rgb(6, 27, 43));
-            border-radius: 2vmin;
-            padding: 4vmin;
-            box-shadow: 0px 0px 10px 1px rgb(192, 192, 192);
-        }
-        #forgot
-        {
-            display: flex;
-            justify-content: end;
-        }
-        #showpass
-        {
-            display: flex;
-            justify-content: start;
-        }
-        #ForgotPass:hover{
-            color: rgb(60, 60, 60);
-            text-decoration: underline;
-        }
-        img
-        {
-            /* height: 50%; */
-            height: 35vmin;
-            margin-left: 9vmax;
-            border-radius: 50%;
-            box-shadow: 0px 0px 200px 1px rgb(255, 255, 255);
-        }
-        #checkbo
-        {
-            /* margin-top: 20px; */
-            margin-right: 8px;
-        }
-
-        #logbtn,#sgnbtn{
-            border-radius: 7px;
-            margin-right: 10px;
-            margin-left: 10px;
-        }
-    
-       
-        #button
-        /* {  background-color: rgb(21, 21, 245); */
-        {  background-color: rgb(21, 21, 245);
-            /* margin-left: 1300px; */
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        body{
-	margin:0;
+	/* margin:13vmin; */
 	color:#6a6f8c;
-	background:#c8c8c8;
+    padding-top: 15vmin;
+	/* background:url(Screenshot.png); */
 	font:600 16px/18px 'Open Sans',sans-serif;
+    background-image: url(ScreenShot.png);
+    background-repeat: no-repeat;
+    background-size:cover;
+    backdrop-filter: blur(10px);
+    height: 100vh
 }
 *,:after,:before{box-sizing:border-box}
 .clearfix:after,.clearfix:before{content:'';display:table}
@@ -123,8 +34,11 @@ a{color:inherit;text-decoration:none}
 	position:relative;
 	background:url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+    border-radius: 10px;
 }
 .login-html{
+    border-radius: 10px;
+
 	width:100%;
 	height:100%;
 	position:absolute;
@@ -253,120 +167,118 @@ a{color:inherit;text-decoration:none}
 }
 .foot-lnk{
 	text-align:center;
+    cursor: pointer;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#forgot:hover{
+    text-decoration: underline;
+    color: #ffffff;
+}
+.group{
+    margin-top: 15px;
+}
+#forgot a{
+    cursor: pointer;
+}
+#passreset{
+    display: none;
+}
+#LogInBtn, #SignUpBtn, #ResetPassBtn{
+    margin-top: 40px;
+    transition: color 0.2s, background-color 0.2s, transform 0.2s;
+}
+#LogInBtn:hover, #SignUpBtn:hover, #ResetPassBtn:hover{
+    color:#1161ee;
+    background-color: white;
+}
+#LogInBtn:active, #SignUpBtn:active, #ResetPassBtn:active{
+    transform: scale(1.1);
+}
 
     </style>
 </head>
 <body>
-    <div class="login-wrap">
-        <div class="login-html">
-            <!-- <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Log In</label>
-            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label> -->
-            <button class="col-4 sign-in" onclick="log()" id="logbtn"> Log In</button>
-            <button class="sign-up col-4" onclick="sign()" id="sgnbtn"> Sign Up</button>
-            <div class="login-form">
-                <div class="sign-in-htm">
-                    <div class="group">
-                        <label for="user" class="label">Username</label>
-                        <input id="user" type="text" class="input">
-                    </div>
-                    <div class="group">
-                        <label for="pass" class="label">Password</label>
-                        <input id="pass" type="password" class="input" data-type="password">
-                    </div>
-                    <div class="group">
-                        <input id="check" type="checkbox" class="check" onclick="changestyle()">
-                        <label for="check"><span class="icon"></span> Show Password</label>
-                        <!-- <button class="btn btn-link-success" id="ForgotPass" onclick="frgtpass()">Forgot Password ?</button> -->
-                    </div>
-                    <!-- <div id="forgot">
-                    </div> -->
-                    <div class="group" id="changehere">
-                        <button id="submit" onclick="logincheck()" class="button" >Log In</button>
-                    </div>
-                    <div class="hr"></div>
-                    <div class="foot-lnk">
-                        <a href="#" id="ForgotPass" onclick="frgtpass()">Forgot Password?</a>
-                    </div>
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label id="logLabel" onclick="log()" for="tab-1" class="tab">Log In</label>
+        <input id="tab-2" type="radio" name="tab" class="sign-up"><label onclick="sign()" for="tab-2" class="tab">Sign Up</label>
+        <div class="login-form">
+            <div class="sign-in-htm" id="logIn">
+                <div class="group">
+                    <label class="label">Username</label>
+                    <input id="x" type="text" class="input">
                 </div>
-
-
-
-                <div id="passreset">
-
-                    <div class="group">
-                        <label for="user" class="label">Username</label>
-                        <input id="user" type="text" class="input">
-                    </div>
-                    <div class="group">
-                        <label for="user" class="label">Favourite Animal</label>
-                        <input id="animal_new" type="text" class="input">
-                    </div>
-                    <div class="group">
-                        <label for="pass" class="label">Password</label>
-                        <input id="passw_new" type="password" class="input" data-type="password">
-                    </div>
-                    <div class="group">
-                        <label for="pass" class="label">Retype Password</label>
-                        <input  id="repassw_new" type="password" class="input"  data-type="password">
-                    </div>
-                    <div class="group">
-                        <button  onclick="newpass()" class="button">Reset Password</button>
-                    </div>
-
+                <div class="group">
+                    <label class="label">Password</label>
+                    <input id="y" type="password" class="input" data-type="password">
                 </div>
+                <div class="group">
+                    <input id="check" type="checkbox" class="check" checked>
+                    <label for="check"><span class="icon"></span> View Password</label>
+                    <span id="forgot" style="margin-left: 70px;"><a onclick="frgtpass()">Forgot Password ?</a></span>
+                </div>
+                <div class="group">
+                    <input id="LogInBtn" type="submit" class="button" value="Log In" onclick="logincheck()">
+                </div>
+                <div class="hr"></div>
+                
+            </div>
 
 
+            <div id="passreset">
+                <div class="group">
+                    <label for="user" class="label">Username</label>
+                    <input id="user_new" type="text" class="input">
+                </div>
+                <div class="group">
+                    <label for="user" class="label">Favourite Animal</label>
+                    <input id="animal_new" type="text" class="input">
+                </div>
+                <div class="group">
+                    <label for="user" class="label">Password</label>
+                    <input id="passw_new" type="password" class="input">
+                </div>
+                <div class="group">
+                    <label for="user" class="label">Retype Password</label>
+                    <input id="repassw_new" type="password" class="input">
+                </div>
+                <div class="group" id="changehere">
+                    <input id="ResetPassBtn" type="submit" class="button" value="Reset Password" onclick="newpass()">
+                </div>
+            </div>
 
 
-                <div class="sign-up-htm">
-                    <div class="group">
-                        <label for="pass" class="label">Email Address</label>
-                        <input id="pass" type="text" class="input">
-                    </div>
-                    <div class="group">
-                        <label for="user" class="label">Username</label>
-                        <input id="user" type="text" class="input">
-                    </div>
-                    <div class="group">
-                        <label for="user" class="label">Favourite Animal</label>
-                        <input id="user" type="text" class="input">
-                    </div>
-                    <div class="group">
-                        <label for="pass" class="label">Password</label>
-                        <input id="pass" type="password" class="input" data-type="password">
-                    </div>
-                    <div class="group">
-                        <label for="pass" class="label">Repeat Password</label>
-                        <input id="pass" type="password" class="input" data-type="password">
-                    </div>
-                    <div class="group">
-                        <input type="submit" class="button" value="Sign Up">
-                    </div>
-                    <div class="hr"></div>
-                    <div class="foot-lnk">
-                        <label for="tab-1">Already Member?</a>
-                    </div>
+            <div class="sign-up-htm" id="signUp">
+                <div class="group">
+                    <label for="user" class="label">Username</label>
+                    <input id="username_inp" type="text" class="input">
+                </div>
+                <div class="group">
+                    <label for="pass" class="label">Email Address</label>
+                    <input id="email_inp" type="text" class="input">
+                </div>
+                <div class="group">
+                    <label for="user" class="label">Favourite Animal</label>
+                    <input id="fav_inp" type="text" class="input">
+                </div>
+                <div class="group">
+                    <label for="pass" class="label">Password</label>
+                    <input id="pass_inp" type="password" class="input" data-type="password">
+                </div>
+                <div class="group">
+                    <label for="pass" class="label">Repeat Password</label>
+                    <input id="rep_inp" type="password" class="input" data-type="password">
+                </div>
+                <div class="group">
+                    <input id="SignUpBtn" type="submit" for="tab-1" class="button" value="Sign Up" onclick="add_usr()">
+                </div>
+                <div class="foot-lnk">
+                    <label onclick="log()" for="tab-1">Already Member?</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
 
@@ -379,22 +291,14 @@ a{color:inherit;text-decoration:none}
     <script>
         log();
         function log() {
-            document.getElementById("sgnbtn").style.backgroundColor = "white";
-            document.getElementById("logbtn").style.backgroundColor = "rgb(1, 43, 77)";
-            document.getElementById("logbtn").style.color = "white";
-            document.getElementById("sgnbtn").style.color = "rgb(1, 43, 77)";
-            document.getElementById("login").style.display = "initial";
-            document.getElementById("signup").style.display = "none";
+            document.getElementById("logIn").style.display = "initial";
+            document.getElementById("signUp").style.display = "none";
             document.getElementById("passreset").style.display = "none";
 
         }
         function sign() {
-            document.getElementById("sgnbtn").style.backgroundColor = "rgb(1, 43, 77)";
-            document.getElementById("logbtn").style.backgroundColor = "white";
-            document.getElementById("logbtn").style.color = "rgb(1, 43, 77)";
-            document.getElementById("sgnbtn").style.color = "white";
-            document.getElementById("login").style.display = "none";
-            document.getElementById("signup").style.display = "initial";
+            document.getElementById("logIn").style.display = "none";
+            document.getElementById("signUp").style.display ="block";
             document.getElementById("passreset").style.display = "none";
         }
         class database {
@@ -437,7 +341,9 @@ a{color:inherit;text-decoration:none}
                     }
                     else {
                         if (a.indexOf("@") > 0 && (a.indexOf(".com") > 0 || a.indexOf(".ac.in") > 0)) {
-                            alert("Signed Up Successfully\nRedirecting to Log In page")
+                            alert("Signed Up Successfully\nRedirecting to Log In page");
+                            postForm();
+                            document.getElementById("logLabel").click();
                             log();
                         }
                         else {
@@ -466,10 +372,9 @@ a{color:inherit;text-decoration:none}
                     myAnchor.appendChild(textToLink);
                     myAnchor.href = "verify.html";
                     document.getElementById("changehere").appendChild(myAnchor);
-                    document.getElementById("submit").style.display = "none";
+                    document.getElementById("LogInBtn").style.display = "none";
                     document.getElementById("changehere").setAttribute("class", "btn btn-outline-success justify-self-center bg-warning");
                     alert("Login Successfull.Going to verification.");
-
                     // navigate to another page after user presses OK
                     if (confirm("Just a second")) {
                         window.location = "/akshat1";
@@ -483,14 +388,13 @@ a{color:inherit;text-decoration:none}
         }
 
         function frgtpass() {
-            document.getElementById("login").style.display = "none";
-            document.getElementById("signup").style.display = "none";
-            document.getElementById("passreset").style.display = "initial";
+            document.getElementById("logIn").style.display = "none";
+            // document.getElementById("signUp").style.display = "none";
+            document.getElementById("passreset").style.display = "block";
         }
 
         function newpass() {
             let a = document.getElementById("usr_new").value;
-
             let c = document.getElementById("animal_new").value;
             let d = document.getElementById("passw_new").value;
             let e = document.getElementById("repassw_new").value;
@@ -531,8 +435,8 @@ a{color:inherit;text-decoration:none}
     </script>
     <script>
 
-        const signBtn = document.querySelector('#signing');
-        signBtn.addEventListener('click', postForm);
+        // const signBtn = document.querySelector('#SignUpBtn');
+        // signBtn.addEventListener('click', postForm);
 
         async function postForm() {
             const emailId = document.getElementById('email_inp').value;

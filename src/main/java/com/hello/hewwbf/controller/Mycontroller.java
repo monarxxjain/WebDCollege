@@ -22,7 +22,7 @@ public class Mycontroller {
     
     @GetMapping("/")
     public String akshatMap(Model model) {
-        return "akshat";
+        return "form1";
     }
     
     @GetMapping("/akshat1") 
@@ -84,6 +84,11 @@ public class Mycontroller {
     @GetMapping("/users")
     public String usersMap(Model model) {
         return "users";
+    }
+
+    @GetMapping("/form1")
+    public String formMap(Model model) {
+        return "form1";
     }
 
     @ResponseBody
