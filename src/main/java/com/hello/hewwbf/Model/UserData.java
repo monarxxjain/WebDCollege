@@ -32,6 +32,13 @@ public class UserData {
         this.userName = userName;
         this.emailId = emailId;
     }
+    public int getUserId(){
+        return this.userId;
+    }
+
+    public void setUserId(int userId){
+        this.userId=userId;
+    }
 
     public String getUserName() {
         return this.userName;

@@ -210,10 +210,10 @@ a{color:inherit;text-decoration:none}
                 </div>
                 <div class="group">
                     <label class="label">Password</label>
-                    <input id="y" type="password" class="input" data-type="password">
+                    <input id="y" type="password" class="input">
                 </div>
                 <div class="group">
-                    <input id="check" type="checkbox" class="check" checked>
+                    <input id="check" type="checkbox" class="check" onclick="changestyle()">
                     <label for="check"><span class="icon"></span> View Password</label>
                     <span id="forgot" style="margin-left: 70px;"><a onclick="frgtpass()">Forgot Password ?</a></span>
                 </div>
@@ -263,11 +263,11 @@ a{color:inherit;text-decoration:none}
                 </div>
                 <div class="group">
                     <label for="pass" class="label">Password</label>
-                    <input id="pass_inp" type="password" class="input" data-type="password">
+                    <input id="pass_inp" type="password" class="input">
                 </div>
                 <div class="group">
                     <label for="pass" class="label">Repeat Password</label>
-                    <input id="rep_inp" type="password" class="input" data-type="password">
+                    <input id="rep_inp" type="password" class="input">
                 </div>
                 <div class="group">
                     <input id="SignUpBtn" type="submit" for="tab-1" class="button" value="Sign Up" onclick="add_usr()">
@@ -308,8 +308,6 @@ a{color:inherit;text-decoration:none}
                 this.fav_animal = fav_animal;
                 this.pass = pass;
                 this.rep_pass = rep_pass;
-                // this.cult = cult;
-                // this.tech = tech;
             }
         }
         var usr_cnt = [];
@@ -317,7 +315,6 @@ a{color:inherit;text-decoration:none}
 
             let a = document.getElementById("email_inp").value;
             let b = document.getElementById("username_inp").value;
-            // let c=document.getElementById("dob_inp").value;
             let d = document.getElementById("fav_inp").value;
             let e = document.getElementById("pass_inp").value;
             let f = document.getElementById("rep_inp").value;
@@ -325,8 +322,8 @@ a{color:inherit;text-decoration:none}
             if (a != "" || b != "" || d != "" || e != "" || f != "") {
                 if (e == f) {
                     let obj = new database(a, b, d, e, f);
-                    usr_cnt.push(obj);
-                    console.log(usr_cnt);
+                    // usr_cnt.push(obj);
+                    // console.log(usr_cnt);
                     var symb = 0, caps = 0;
                     for (let i = 0; i < e.length; i++) {
                         if (e[i] == '@' || e[i] == '$' || e[i] == '%' || e[i] == '#' || e[i] == '!' || e[i] == '%' || e[i] == '^' || e[i] == '&' || e[i] == '*') {
@@ -363,62 +360,87 @@ a{color:inherit;text-decoration:none}
         }
 
         function logincheck() {
-            let a = document.getElementById("x").value;
-            let b = document.getElementById("y").value;
-            for (let i = 0; i < usr_cnt.length; i++) {
-                if (usr_cnt[i].username == a && usr_cnt[i].pass == b) {
-                    let myAnchor = document.createElement('a');
-                    let textToLink = document.createTextNode("Log in");
-                    myAnchor.appendChild(textToLink);
-                    myAnchor.href = "verify.html";
-                    document.getElementById("changehere").appendChild(myAnchor);
-                    document.getElementById("LogInBtn").style.display = "none";
-                    document.getElementById("changehere").setAttribute("class", "btn btn-outline-success justify-self-center bg-warning");
-                    alert("Login Successfull.Going to verification.");
-                    // navigate to another page after user presses OK
-                    if (confirm("Just a second")) {
-                        window.location = "/akshat1";
-                    }
-                }
-                else {
-                    alert("Invalid Username or Password");
-                }
-                console.log(usr_cnt);
-            }
+            const users = fetch("/get/users")
+            users
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                console.log(data);
+                checkData(data);
+            })
+            
         }
+        function checkData(data) {
+            let name = document.getElementById('x').value;
+            let pass = document.getElementById('y').value;
+            let cnt = 0;
+            for (let i = 0; i < data.length; i++) {
+                if(name==data[i].userName && pass == data[i].password){
+            
+                    alert("Login Successfull.Going to verification.");
+                    window.location = "/akshat1";
+                    cnt++;
+                    
+                }
+                
+            }
+            if(cnt==0){
+                alert("Invalid Username or Password");
+            }
+            
+        }
+
+
 
         function frgtpass() {
             document.getElementById("logIn").style.display = "none";
-            // document.getElementById("signUp").style.display = "none";
             document.getElementById("passreset").style.display = "block";
         }
 
-        function newpass() {
-            let a = document.getElementById("usr_new").value;
+        function newpasss() {
+            const users = fetch("/get/users")
+            users
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                console.log(data);
+                updatePass(data);
+            })
+            
+        }
+
+        function updatePass(data){
+            let a = document.getElementById("user_new").value;
             let c = document.getElementById("animal_new").value;
             let d = document.getElementById("passw_new").value;
             let e = document.getElementById("repassw_new").value;
             if (e == d) {
-                for (let i = 0; i < usr_cnt.length; i++) {
-                    if (usr_cnt[i].username == a && usr_cnt[i].fav_animal == c) {
-                        alert("Password changed successfully \n Redirecting to login up page!");
-                        for (let i = 0; i < usr_cnt.length; i++) {
-                            if (usr_cnt[i].username == a) {
-                                usr_cnt[i].pass = d;
-                                usr_cnt[i].rep_pass = e;
-                            }
-                        }
+                let mj1 = 0;
+                for (let i = 0; i < data.length; i++) {
+                    // console.log(data[i].userName)
+                    if (data[i].userName == a && data[i].fav_animal == c) {
+                        mj1++;
+                        upData(a,data[i].emailId,c,d);
+                        document.getElementById("logLabel").click();
+                        
                         log();
+                        alert("Password changed successfully \n Redirecting to login up page!");
+                        break;
                     }
-                    else {
-                        alert(" Account detection Error");
-                    }
+                    
+                }
+                if(mj1==0){
+                    alert(" Account detection Error");
                 }
             }
             else {
                 alert("Both the passwords should be same!");
             }
         }
+
+        // For Viewing password
         var countingtick = 0;
         function changestyle() {
             if (countingtick % 2 == 0) {
@@ -432,11 +454,44 @@ a{color:inherit;text-decoration:none}
 
         }
 
+        function newpass(){
+            let userName = document.getElementById("user_new").value;
+            let fav_animal = document.getElementById("animal_new").value;
+            let password = document.getElementById("passw_new").value;
+            let reppassword = document.getElementById("repassw_new").value;
+            console.log("object");
+            if(password==reppassword){
+                upData();
+                document.getElementById("logLabel").click();
+
+                log();
+            }
+
+
+        }
+
     </script>
     <script>
 
-        // const signBtn = document.querySelector('#SignUpBtn');
-        // signBtn.addEventListener('click', postForm);
+        async function upData(){
+            let userName = document.getElementById("user_new").value;
+            let fav_animal = document.getElementById("animal_new").value;
+            let password = document.getElementById("passw_new").value;
+
+            let updateData = {
+                userName,
+                password,
+                fav_animal
+            }
+            console.log("HI")
+            const resp = await fetch("/put/form", {
+                method: 'put',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updateData),
+            });
+        }
 
         async function postForm() {
             const emailId = document.getElementById('email_inp').value;
@@ -457,7 +512,6 @@ a{color:inherit;text-decoration:none}
                 },
                 body: JSON.stringify(formData),
             });
-            //    console.log("hello : " + email_id);
             console.log(JSON.stringify(formData));
 
         }

@@ -8,6 +8,11 @@ import org.springframework.data.jpa.repository.Query;
 import com.hello.hewwbf.Model.UserData;
 
 public interface Database extends JpaRepository<UserData,Integer>{
+
+
     @Query(value="select * from users",nativeQuery = true)
     public List<UserData> getAll();
+
+    // public UserData findById(int userId);
+    public UserData findByUserId(int userId);
 }

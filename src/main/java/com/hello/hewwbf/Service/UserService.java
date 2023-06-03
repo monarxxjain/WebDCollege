@@ -11,4 +11,8 @@ public interface UserService {
 
     public List<UserData> getall();
 
+    public void putData(UserData userNewData);
+
+    public UserData getUserByName(String userName);
+
 }
