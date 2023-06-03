@@ -29,7 +29,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void putData(UserData userNewData) {
-        List<UserData> user = this.dataBase.getAll();
          for(UserData x:this.dataBase.getAll()){
             
             UserData user1 = this.dataBase.findByUserId(x.getUserId());
