@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,10 +14,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hello.hewwbf.Model.AdminData;
 import com.hello.hewwbf.Model.UserData;
 import com.hello.hewwbf.Service.UserServiceImpl;
 
 @Controller
+@CrossOrigin
 public class Mycontroller {
 
     @Autowired
@@ -116,6 +119,34 @@ public class Mycontroller {
     @GetMapping("/get/users/{userName}")
     public UserData getUser(@PathVariable String userName){
         return this.userServiceImpl.getUserByName(userName);
+    }
+
+    @ResponseBody
+    @GetMapping("/get/user/{userName}/{password}")
+    public boolean getUserByName(@PathVariable String userName,@PathVariable String password){
+        return this.userServiceImpl.getUserByNameSec(userName,password);
+    }
+
+
+
+
+
+    @ResponseBody
+    @PostMapping("/post/formadmin")
+    public void postAdminForm(@RequestBody AdminData adminData) {
+        this.userServiceImpl.postAdminData(adminData);
+    }
+
+    @ResponseBody
+    @GetMapping("/get/admins")
+    public List<AdminData> getAdmins() {
+        return this.userServiceImpl.getallAdmins();
+    }
+
+    @ResponseBody
+    @GetMapping("/get/admin/{adminName}")
+    public boolean getAdmin(@PathVariable String adminName) {
+        return this.userServiceImpl.getAdminByName(adminName);
     }
 
 }
