@@ -1,14 +1,24 @@
 package com.hello.hewwbf.Service;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hello.hewwbf.Database.AdminDatabase;
+import com.hello.hewwbf.Database.AlumniDatabase;
+import com.hello.hewwbf.Database.ContactUsDatabase;
 import com.hello.hewwbf.Database.Database;
 import com.hello.hewwbf.Model.AdminData;
+import com.hello.hewwbf.Model.AlumniData;
+import com.hello.hewwbf.Model.ContactData;
 import com.hello.hewwbf.Model.UserData;
+import com.hello.hewwbf.util.ImageUtils;
+
+import org.mindrot.jbcrypt.BCrypt;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,6 +28,13 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private AdminDatabase adminBase;
+
+
+    @Autowired
+    private AlumniDatabase repository;
+
+    @Autowired
+    private ContactUsDatabase contactBase;
 
     @Override
     public void postData(UserData userData) {
@@ -67,9 +84,15 @@ public class UserServiceImpl implements UserService {
         boolean userPresent = false;
         List<UserData> list = this.dataBase.getAll();
         for (UserData user : list) {
-            if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
-                userPresent = true;
-                break;
+            if (user.getUserName().equals(userName)) {
+                if (BCrypt.checkpw(password, user.getPassword())) {
+                    System.out.println("The password is a match!");
+                    userPresent = true;
+                    break;
+                }
+                else{
+                    System.out.println("Wrong password");
+                }
             }
         }
         return userPresent;
@@ -104,6 +127,48 @@ public class UserServiceImpl implements UserService {
             }
         }
         return userPresent;
+    }
+
+
+
+
+
+
+
+    // <-----------------------  ContactUsForm -------------------->
+
+    @Override
+    public void postContactData(ContactData contactData){
+        this.contactBase.save(contactData);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public String uploadImage(MultipartFile file) throws IOException {
+        AlumniData imageData = repository.save(AlumniData.builder()
+                .name(file.getOriginalFilename())
+                .imageData(ImageUtils.compressImage(file.getBytes())).build());
+        if (imageData != null) {
+            return "file uploaded successfully : " + file.getOriginalFilename();
+        }
+        return null;
+    }
+
+    public byte[] downloadImage(String fileName) {
+        Optional<AlumniData> dbImageData = repository.findAlumniByName(fileName);
+        byte[] images = ImageUtils.decompressImage(dbImageData.get().getImageData());
+        return images;
     }
     
     

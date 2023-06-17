@@ -1,8 +1,12 @@
 package com.hello.hewwbf.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 // import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hello.hewwbf.Model.AdminData;
+import com.hello.hewwbf.Model.ContactData;
 import com.hello.hewwbf.Model.UserData;
 import com.hello.hewwbf.Service.UserServiceImpl;
 
@@ -124,6 +131,7 @@ public class Mycontroller {
     @ResponseBody
     @GetMapping("/get/user/{userName}/{password}")
     public boolean getUserByName(@PathVariable String userName,@PathVariable String password){
+        System.out.println(userName + " " + password);
         return this.userServiceImpl.getUserByNameSec(userName,password);
     }
 
@@ -147,6 +155,42 @@ public class Mycontroller {
     @GetMapping("/get/admin/{adminName}")
     public boolean getAdmin(@PathVariable String adminName) {
         return this.userServiceImpl.getAdminByName(adminName);
+    }
+
+
+
+
+
+
+    @ResponseBody
+    @PostMapping("/post/alumni")
+    public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) throws IOException {
+        String uploadImage = userServiceImpl.uploadImage(file);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(uploadImage);
+    }
+
+    @ResponseBody
+    @GetMapping("/get/alumni/{fileName}")
+    public ResponseEntity<?> downloadImage(@PathVariable String fileName) {
+        byte[] imageData = userServiceImpl.downloadImage(fileName);
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.valueOf("image/png"))
+                .body(imageData);
+
+    }
+
+
+
+
+
+
+
+    // **ContactUsForm**
+    @ResponseBody
+    @PostMapping("/post/contact")
+    public void postContactForm(@RequestBody ContactData contactData) {
+        this.userServiceImpl.postContactData(contactData);
     }
 
 }
