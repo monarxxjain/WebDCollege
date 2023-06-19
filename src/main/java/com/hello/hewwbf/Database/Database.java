@@ -13,6 +13,5 @@ public interface Database extends JpaRepository<UserData,Integer>{
     @Query(value="select * from users",nativeQuery = true)
     public List<UserData> getAll();
 
-    // public UserData findById(int userId);
     public UserData findByUserId(int userId);
 }

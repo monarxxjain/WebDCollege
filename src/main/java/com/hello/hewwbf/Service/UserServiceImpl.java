@@ -12,9 +12,11 @@ import com.hello.hewwbf.Database.AdminDatabase;
 import com.hello.hewwbf.Database.AlumniDatabase;
 import com.hello.hewwbf.Database.ContactUsDatabase;
 import com.hello.hewwbf.Database.Database;
+import com.hello.hewwbf.Database.InfoDatabase;
 import com.hello.hewwbf.Model.AdminData;
 import com.hello.hewwbf.Model.AlumniData;
 import com.hello.hewwbf.Model.ContactData;
+import com.hello.hewwbf.Model.InfoData;
 import com.hello.hewwbf.Model.UserData;
 import com.hello.hewwbf.util.ImageUtils;
 
@@ -35,6 +37,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private ContactUsDatabase contactBase;
+    
+    @Autowired
+    private InfoDatabase infoBase;
 
     @Override
     public void postData(UserData userData) {
@@ -88,6 +93,7 @@ public class UserServiceImpl implements UserService {
                 if (BCrypt.checkpw(password, user.getPassword())) {
                     System.out.println("The password is a match!");
                     userPresent = true;
+                    // yesLogggedIn(user);
                     break;
                 }
                 else{
@@ -98,6 +104,25 @@ public class UserServiceImpl implements UserService {
         return userPresent;
     }
 
+    // public void yesLogggedIn(UserData user){
+    //     user.setIsLoggedInWhileSup(1);
+    //     this.dataBase.save(user);
+    // }
+
+    // @Override
+    // public String getDashName(){
+    //     String dashName = "";
+    //     List<UserData> list = this.dataBase.getAll();
+    //     for (UserData user : list) {
+    //         if (user.getIsLoggedInWhileSup()==1) {
+    //             System.out.println("HelloThere");
+    //             dashName = user.getUserName();
+    //             System.out.println(dashName);
+    //             break;    
+    //         }
+    //     }
+    //     return dashName;
+    // }
 
 
 
@@ -140,6 +165,19 @@ public class UserServiceImpl implements UserService {
     @Override
     public void postContactData(ContactData contactData){
         this.contactBase.save(contactData);
+    }
+
+
+
+
+
+
+
+
+
+    @Override
+    public void postInfoData(InfoData infoData){
+        this.infoBase.save(infoData);
     }
 
 

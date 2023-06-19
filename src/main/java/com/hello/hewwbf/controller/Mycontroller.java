@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hello.hewwbf.Model.AdminData;
 import com.hello.hewwbf.Model.ContactData;
+import com.hello.hewwbf.Model.InfoData;
 import com.hello.hewwbf.Model.UserData;
 import com.hello.hewwbf.Service.UserServiceImpl;
 
@@ -134,6 +135,11 @@ public class Mycontroller {
         System.out.println(userName + " " + password);
         return this.userServiceImpl.getUserByNameSec(userName,password);
     }
+    // @ResponseBody
+    // @GetMapping("/get/usersName")
+    // public String getUsersNameDash(){
+    //     return this.userServiceImpl.getDashName();
+    // }
 
 
 
@@ -191,6 +197,16 @@ public class Mycontroller {
     @PostMapping("/post/contact")
     public void postContactForm(@RequestBody ContactData contactData) {
         this.userServiceImpl.postContactData(contactData);
+    }
+
+
+
+
+    // **FullScreen**
+    @ResponseBody
+    @PostMapping("/post/info")
+    public void postInfoForm(@RequestBody InfoData infoData) {
+        this.userServiceImpl.postInfoData(infoData);
     }
 
 }

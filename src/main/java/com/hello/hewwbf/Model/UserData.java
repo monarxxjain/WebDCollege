@@ -21,23 +21,28 @@ public class UserData {
     @Column
     private String fav_animal;
 
-    public UserData() {
+    @Column
+    private int isLoggedInWhileSup;
 
+
+    public UserData() {
     }
 
-    public UserData( String userName, String emailId, String password, String fav_animal) {
-
-        this.password = password;
-        this.fav_animal = fav_animal;
+    public UserData(int userId, String userName, String emailId, String password, String fav_animal, int isLoggedInWhileSup) {
+        this.userId = userId;
         this.userName = userName;
         this.emailId = emailId;
+        this.password = password;
+        this.fav_animal = fav_animal;
+        this.isLoggedInWhileSup = isLoggedInWhileSup;
     }
-    public int getUserId(){
+
+    public int getUserId() {
         return this.userId;
     }
 
-    public void setUserId(int userId){
-        this.userId=userId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUserName() {
@@ -71,5 +76,14 @@ public class UserData {
     public void setFav_animal(String fav_animal) {
         this.fav_animal = fav_animal;
     }
+
+    public int getIsLoggedInWhileSup() {
+        return this.isLoggedInWhileSup;
+    }
+
+    public void setIsLoggedInWhileSup(int isLoggedInWhileSup) {
+        this.isLoggedInWhileSup = isLoggedInWhileSup;
+    }
+    
 
 }

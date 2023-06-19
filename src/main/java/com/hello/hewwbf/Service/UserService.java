@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.hello.hewwbf.Model.AdminData;
 import com.hello.hewwbf.Model.ContactData;
+import com.hello.hewwbf.Model.InfoData;
 import com.hello.hewwbf.Model.UserData;
 
 
@@ -26,5 +27,9 @@ public interface UserService {
     public boolean getAdminByName(String adminName);
 
     public void postContactData(ContactData contactData);
+
+    public void postInfoData(InfoData infoData);
+
+    // public String getDashName();
 
 }
