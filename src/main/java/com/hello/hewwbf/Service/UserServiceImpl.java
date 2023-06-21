@@ -1,6 +1,7 @@
 package com.hello.hewwbf.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,11 +11,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hello.hewwbf.Database.AdminDatabase;
 import com.hello.hewwbf.Database.AlumniDatabase;
+import com.hello.hewwbf.Database.CalendarDatabase;
 import com.hello.hewwbf.Database.ContactUsDatabase;
 import com.hello.hewwbf.Database.Database;
 import com.hello.hewwbf.Database.InfoDatabase;
 import com.hello.hewwbf.Model.AdminData;
 import com.hello.hewwbf.Model.AlumniData;
+import com.hello.hewwbf.Model.CalendarData;
 import com.hello.hewwbf.Model.ContactData;
 import com.hello.hewwbf.Model.InfoData;
 import com.hello.hewwbf.Model.UserData;
@@ -40,6 +43,9 @@ public class UserServiceImpl implements UserService {
     
     @Autowired
     private InfoDatabase infoBase;
+    
+    @Autowired
+    private CalendarDatabase calBase;
 
     @Override
     public void postData(UserData userData) {
@@ -182,6 +188,27 @@ public class UserServiceImpl implements UserService {
 
 
 
+    @Override
+    public List<String> getCf(){
+        List<InfoData> list = this.infoBase.getAll();
+        List<String> CfNames = new ArrayList<>();
+        for(InfoData user : list){
+            CfNames.add(user.getCodeforcesusername());
+        }
+        System.out.println(CfNames);
+        return CfNames;
+    }
+
+    @Override
+    public List<String> getGit(){
+        List<InfoData> list = this.infoBase.getAll();
+        List<String> GitNames = new ArrayList<>();
+        for(InfoData user : list){
+            GitNames.add(user.getGithubownername());
+        }
+        System.out.println(GitNames);
+        return GitNames;
+    }
 
 
 
@@ -189,6 +216,35 @@ public class UserServiceImpl implements UserService {
 
 
 
+
+
+
+
+
+
+    @Override
+    public List<CalendarData> getCalData(){
+        return this.calBase.getAll();
+    }
+
+    @Override
+    public void postCalData(CalendarData calendarData){
+        this.calBase.save(calendarData);
+    }
+
+    @Override
+    public void delCalData(String timer){
+        List<CalendarData> list = this.calBase.getAll();
+        CalendarData delCal = null;
+        for(CalendarData cal : list){
+            if(cal.getStart().equals(timer)){
+                delCal = cal;
+                System.out.println("deleted");
+                break;
+            }
+        }
+        this.calBase.delete(delCal);
+    }
 
 
 

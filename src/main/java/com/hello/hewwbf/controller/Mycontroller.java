@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hello.hewwbf.Model.AdminData;
+import com.hello.hewwbf.Model.CalendarData;
 import com.hello.hewwbf.Model.ContactData;
 import com.hello.hewwbf.Model.InfoData;
 import com.hello.hewwbf.Model.UserData;
@@ -104,6 +106,11 @@ public class Mycontroller {
         return "form1";
     }
 
+
+
+
+// ! <================================Start=========================================>
+    // ** User Form **
     @ResponseBody
     @PostMapping("/post/form")
     public void postForm(@RequestBody UserData userData){
@@ -140,10 +147,23 @@ public class Mycontroller {
     // public String getUsersNameDash(){
     //     return this.userServiceImpl.getDashName();
     // }
+// ! <==============================End===========================================>
 
 
 
 
+
+
+
+
+
+
+
+
+
+// ! <================================Start=========================================>
+
+// ** Admin Form **
 
     @ResponseBody
     @PostMapping("/post/formadmin")
@@ -163,10 +183,27 @@ public class Mycontroller {
         return this.userServiceImpl.getAdminByName(adminName);
     }
 
+// ! <==============================End===========================================>
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ! <================================Start=========================================>
+
+// ** Alumni Image **
 
     @ResponseBody
     @PostMapping("/post/alumni")
@@ -186,6 +223,7 @@ public class Mycontroller {
 
     }
 
+// ! <================================End=========================================>
 
 
 
@@ -208,5 +246,60 @@ public class Mycontroller {
     public void postInfoForm(@RequestBody InfoData infoData) {
         this.userServiceImpl.postInfoData(infoData);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ! <================================DashBoard Start=========================================>
+
+    // ** CodeForcesuserNameFetch **
+    @ResponseBody
+    @GetMapping("/get/cfUserName")
+    public List<String> getCFUserNames() {
+        return this.userServiceImpl.getCf();
+    }
+
+
+    // ** GithubUserNameFetch **
+    @ResponseBody
+    @GetMapping("/get/gitUserName")
+    public List<String> getGitUserNames() {
+        return this.userServiceImpl.getGit();
+    }
+
+    // ** CalendarDataFetch **
+    @ResponseBody
+    @GetMapping("/get/calendar")
+    public List<CalendarData> getCalendar() {
+        return this.userServiceImpl.getCalData();
+    }
+
+    // ** CalendarDataPost **
+    @ResponseBody
+    @PostMapping("/post/calendar")
+    public void postCalendar(@RequestBody CalendarData calendarData) {
+        this.userServiceImpl.postCalData(calendarData);
+    }
+
+    // ** CalendarDataDelete **
+    @ResponseBody
+    @DeleteMapping("/del/calendar")
+    public void delCalendar(@RequestBody String timer) {
+        System.out.println(timer);
+        this.userServiceImpl.delCalData(timer);
+    }
+    
+// ! <================================DashBoard End=========================================>
 
 }
