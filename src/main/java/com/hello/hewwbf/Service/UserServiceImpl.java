@@ -246,20 +246,68 @@ public class UserServiceImpl implements UserService {
         return this.infoBase.getAll();
     }
 
-
+    //////////////////////////////////////////////////////////////
     @Override
-    public void postScoreData(InfoScoreData scoreData){
+    public void putWebData(InfoScoreData scoreData){
         List<InfoData> list = this.infoBase.getAll();
         for (InfoData info : list) {
             if(info.getGithubownername().equals(scoreData.getGithubownername())){
-                info.setScore(scoreData.getScore());
+                info.setWebscore(scoreData.getWebscore());
                 InfoData scorePutter = info;
                 this.infoBase.save(scorePutter);
                 break;
             }
         }
     }
-
+    @Override
+    public void putAppData(InfoScoreData scoreData){
+        List<InfoData> list = this.infoBase.getAll();
+        for (InfoData info : list) {
+            if(info.getGithubownername().equals(scoreData.getGithubownername())){
+                info.setAppscore(scoreData.getAppscore());
+                InfoData scorePutter = info;
+                this.infoBase.save(scorePutter);
+                break;
+            }
+        }
+    }
+    @Override
+    public void putBcData(InfoScoreData scoreData){
+        List<InfoData> list = this.infoBase.getAll();
+        for (InfoData info : list) {
+            if(info.getGithubownername().equals(scoreData.getGithubownername())){
+                info.setBlockchainscore(scoreData.getBlockchainscore());
+                InfoData scorePutter = info;
+                this.infoBase.save(scorePutter);
+                break;
+            }
+        }
+    }
+    @Override
+    public void putMlData(InfoScoreData scoreData){
+        List<InfoData> list = this.infoBase.getAll();
+        for (InfoData info : list) {
+            if(info.getGithubownername().equals(scoreData.getGithubownername())){
+                info.setMlscore(scoreData.getMlscore());
+                InfoData scorePutter = info;
+                this.infoBase.save(scorePutter);
+                break;
+            }
+        }
+    }
+    @Override
+    public void putDesignData(InfoScoreData scoreData){
+        List<InfoData> list = this.infoBase.getAll();
+        for (InfoData info : list) {
+            if(info.getGithubownername().equals(scoreData.getGithubownername())){
+                info.setDesignscore(scoreData.getDesignscore());
+                InfoData scorePutter = info;
+                this.infoBase.save(scorePutter);
+                break;
+            }
+        }
+    }
+    ///////////////////////////////////////////////////////////////
     // !! ----------------------------------- Info End -------------------------------------- !!\\
 
 

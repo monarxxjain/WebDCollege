@@ -34,9 +34,21 @@ public class InfoData {
     private String codeforcesusername;
 
     @Column
-    private int score;
+    private int webscore;
 
-    public InfoData(int userId,int score, String githhubwebdev, String githhubappdev, String githubownername, String githubreponame, String githubblockchain, String githubdesign, String githubml, String codeforcesusername) {
+    @Column
+    private int appscore;
+
+    @Column
+    private int blockchainscore;
+
+    @Column
+    private int mlscore;
+
+    @Column
+    private int designscore;
+
+    public InfoData(int userId, int webscore, int appscore, int blockchainscore, int mlscore, int designscore, String githhubwebdev, String githhubappdev, String githubownername, String githubreponame, String githubblockchain, String githubdesign, String githubml, String codeforcesusername) {
 
         this.githhubwebdev = githhubwebdev;
         this.githhubappdev = githhubappdev;
@@ -46,7 +58,11 @@ public class InfoData {
         this.githubdesign = githubdesign;
         this.githubml = githubml;
         this.codeforcesusername = codeforcesusername;
-        this.score=score;
+        this.webscore=webscore;
+        this.appscore=appscore;
+        this.blockchainscore= blockchainscore;
+        this.mlscore=mlscore;
+        this.designscore=designscore;
     }
 
 
@@ -54,20 +70,13 @@ public class InfoData {
 
     }
 
+
     public int getUserId() {
         return this.userId;
     }
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public int getScore() {
-        return this.score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
     }
 
     public String getGithhubwebdev() {
@@ -133,7 +142,46 @@ public class InfoData {
     public void setCodeforcesusername(String codeforcesusername) {
         this.codeforcesusername = codeforcesusername;
     }
-    
+
+    public int getWebscore() {
+        return this.webscore;
+    }
+
+    public void setWebscore(int webscore) {
+        this.webscore = webscore;
+    }
+
+    public int getAppscore() {
+        return this.appscore;
+    }
+
+    public void setAppscore(int appscore) {
+        this.appscore = appscore;
+    }
+
+    public int getBlockchainscore() {
+        return this.blockchainscore;
+    }
+
+    public void setBlockchainscore(int blockchainscore) {
+        this.blockchainscore = blockchainscore;
+    }
+
+    public int getMlscore() {
+        return this.mlscore;
+    }
+
+    public void setMlscore(int mlscore) {
+        this.mlscore = mlscore;
+    }
+
+    public int getDesignscore() {
+        return this.designscore;
+    }
+
+    public void setDesignscore(int designscore) {
+        this.designscore = designscore;
+    }
 
 
 }

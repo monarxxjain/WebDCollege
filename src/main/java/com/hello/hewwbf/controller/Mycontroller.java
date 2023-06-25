@@ -296,13 +296,35 @@ public class Mycontroller {
     public List<InfoData> getGitUserData() {
         return this.userServiceImpl.getGit();
     }
-
+///////////////////////////////////////////////////////////////////////////////
     // ** GithubScoreUpdate **
     @ResponseBody
-    @PutMapping("/put/score")
-    public void postInfoScore(@RequestBody InfoScoreData scoreData) {
-        this.userServiceImpl.postScoreData(scoreData);
+    @PutMapping("/put/webscore")
+    public void putWebScore(@RequestBody InfoScoreData scoreData) {
+        this.userServiceImpl.putWebData(scoreData);
     }
+    @ResponseBody
+    @PutMapping("/put/appscore")
+    public void putAppScore(@RequestBody InfoScoreData scoreData) {
+        this.userServiceImpl.putAppData(scoreData);
+    }
+    @ResponseBody
+    @PutMapping("/put/bcscore")
+    public void putBlockChainScore(@RequestBody InfoScoreData scoreData) {
+        this.userServiceImpl.putBcData(scoreData);
+    }
+    @ResponseBody
+    @PutMapping("/put/mlscore")
+    public void putMLScore(@RequestBody InfoScoreData scoreData) {
+        this.userServiceImpl.putMlData(scoreData);
+    }
+    @ResponseBody
+    @PutMapping("/put/designscore")
+    public void putDesignScore(@RequestBody InfoScoreData scoreData) {
+        this.userServiceImpl.putDesignData(scoreData);
+    }
+
+///////////////////////////////////////////////////////////////////////////////
 
     // ** CalendarDataFetch **
     @ResponseBody

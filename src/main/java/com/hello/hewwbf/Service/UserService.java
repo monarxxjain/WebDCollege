@@ -45,7 +45,15 @@ public interface UserService {
 
     public List<InfoData> getGit();
 
-    public void postScoreData(InfoScoreData scoreData);
+    public void putWebData(InfoScoreData scoreData);
+
+    public void putAppData(InfoScoreData scoreData);
+
+    public void putBcData(InfoScoreData scoreData);
+
+    public void putMlData(InfoScoreData scoreData);
+
+    public void putDesignData(InfoScoreData scoreData);
 
     public List<CalendarData> getCalData();
 
