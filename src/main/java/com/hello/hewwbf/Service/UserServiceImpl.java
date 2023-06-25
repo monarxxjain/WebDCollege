@@ -14,12 +14,15 @@ import com.hello.hewwbf.Database.AlumniDatabase;
 import com.hello.hewwbf.Database.CalendarDatabase;
 import com.hello.hewwbf.Database.ContactUsDatabase;
 import com.hello.hewwbf.Database.Database;
+import com.hello.hewwbf.Database.FAQDatabase;
 import com.hello.hewwbf.Database.InfoDatabase;
 import com.hello.hewwbf.Model.AdminData;
 import com.hello.hewwbf.Model.AlumniData;
 import com.hello.hewwbf.Model.CalendarData;
 import com.hello.hewwbf.Model.ContactData;
+import com.hello.hewwbf.Model.FAQData;
 import com.hello.hewwbf.Model.InfoData;
+import com.hello.hewwbf.Model.InfoScoreData;
 import com.hello.hewwbf.Model.UserData;
 import com.hello.hewwbf.util.ImageUtils;
 
@@ -46,18 +49,24 @@ public class UserServiceImpl implements UserService {
     
     @Autowired
     private CalendarDatabase calBase;
+    
+    @Autowired
+    private FAQDatabase faqBase;
+
+
+
+
+    // !! ----------------------------------- User Form Start -------------------------------------- !!\\
 
     @Override
     public void postData(UserData userData) {
         this.dataBase.save(userData);
     }
 
-
     @Override
     public List<UserData> getall() {
         return this.dataBase.getAll();
     }
-
 
     @Override
     public void putData(UserData userNewData) {
@@ -130,12 +139,17 @@ public class UserServiceImpl implements UserService {
     //     return dashName;
     // }
 
+    // !! ----------------------------------- User Form End -------------------------------------- !!\\
 
 
 
 
 
 
+
+
+
+    // !! ----------------------------------- Admin Form Start -------------------------------------- !!\\
 
     @Override
     public void postAdminData(AdminData adminData){
@@ -160,19 +174,43 @@ public class UserServiceImpl implements UserService {
         return userPresent;
     }
 
+    @Override
+    public boolean getAdminByNameSec(String adminName, String adminPassword) {
+        boolean adminPresent = false;
+        List<AdminData> list = this.adminBase.getAll();
+        for (AdminData user : list) {
+            if (user.getAdminName().equals(adminName)) {
+                if (BCrypt.checkpw(adminPassword, user.getAdminPassword())) {
+                    System.out.println("The password is a match!");
+                    adminPresent = true;
+                    // yesLogggedIn(user);
+                    break;
+                } else {
+                    System.out.println("Wrong Admin password");
+                }
+            }
+        }
+        return adminPresent;
+    }
+
+    // !! ----------------------------------- Admin Form End -------------------------------------- !!\\
 
 
 
 
 
 
-    // <-----------------------  ContactUsForm -------------------->
+
+
+
+    // !! ----------------------------------- Contact Us Start -------------------------------------- !!\\
 
     @Override
     public void postContactData(ContactData contactData){
         this.contactBase.save(contactData);
     }
 
+    // !! ----------------------------------- Contact Us End -------------------------------------- !!\\
 
 
 
@@ -180,13 +218,17 @@ public class UserServiceImpl implements UserService {
 
 
 
+
+
+
+
+
+    // !! ----------------------------------- Info Start -------------------------------------- !!\\
 
     @Override
     public void postInfoData(InfoData infoData){
         this.infoBase.save(infoData);
     }
-
-
 
     @Override
     public List<String> getCf(){
@@ -200,17 +242,25 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<String> getGit(){
-        List<InfoData> list = this.infoBase.getAll();
-        List<String> GitNames = new ArrayList<>();
-        for(InfoData user : list){
-            GitNames.add(user.getGithubownername());
-        }
-        System.out.println(GitNames);
-        return GitNames;
+    public List<InfoData> getGit(){
+        return this.infoBase.getAll();
     }
 
 
+    @Override
+    public void postScoreData(InfoScoreData scoreData){
+        List<InfoData> list = this.infoBase.getAll();
+        for (InfoData info : list) {
+            if(info.getGithubownername().equals(scoreData.getGithubownername())){
+                info.setScore(scoreData.getScore());
+                InfoData scorePutter = info;
+                this.infoBase.save(scorePutter);
+                break;
+            }
+        }
+    }
+
+    // !! ----------------------------------- Info End -------------------------------------- !!\\
 
 
 
@@ -218,9 +268,13 @@ public class UserServiceImpl implements UserService {
 
 
 
+    
 
 
 
+
+
+    // !! ----------------------------------- Calendar Start -------------------------------------- !!\\
 
     @Override
     public List<CalendarData> getCalData(){
@@ -245,25 +299,55 @@ public class UserServiceImpl implements UserService {
         }
         this.calBase.delete(delCal);
     }
+    // !! ----------------------------------- Calendar End -------------------------------------- !!\\
+
+    // @Override
+    // public void postAlumniForm(AlumniData alumniData){
+    //     this.repository.save(alumniData);
+    // }
+
+    // @Override
+    // public List<AlumniData> getAlumniForm(){
+    //     return this.repository.getAll();
+    // }
 
 
 
 
-    public String uploadImage(MultipartFile file) throws IOException {
-        AlumniData imageData = repository.save(AlumniData.builder()
-                .name(file.getOriginalFilename())
-                .imageData(ImageUtils.compressImage(file.getBytes())).build());
-        if (imageData != null) {
-            return "file uploaded successfully : " + file.getOriginalFilename();
-        }
-        return null;
+    // @Override
+    // public String uploadImage(MultipartFile file) throws IOException {
+    //     AlumniData imageData = repository.save(AlumniData.builder()
+    //             .name(file.getOriginalFilename())
+    //             .type(file.getContentType())
+    //             .imageData(ImageUtils.compressImage(file.getBytes())).build());
+    //     if (imageData != null) {
+    //         return "file uploaded successfully : " + file.getOriginalFilename();
+    //     }
+    //     return null;
+    // }
+    // @Override
+    // public byte[] downloadImage(String fileName) {
+    //     Optional<AlumniData> dbImageData = repository.findByName(fileName);
+    //     byte[] images = ImageUtils.decompressImage(dbImageData.get().getImageData());
+    //     return images;
+    // }
+
+
+
+
+
+
+
+//!! ----------------------------------- FAQ Start-------------------------------------- !!\\
+    @Override
+    public void postFaqData(FAQData faqData){
+        this.faqBase.save(faqData);
     }
 
-    public byte[] downloadImage(String fileName) {
-        Optional<AlumniData> dbImageData = repository.findAlumniByName(fileName);
-        byte[] images = ImageUtils.decompressImage(dbImageData.get().getImageData());
-        return images;
+    @Override
+    public List<FAQData> getAllFaqs(){
+        return this.faqBase.getAll();
     }
-    
+//!! ----------------------------------- FAQ End-------------------------------------- !!\\
     
 }

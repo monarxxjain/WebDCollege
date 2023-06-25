@@ -22,9 +22,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hello.hewwbf.Model.AdminData;
+import com.hello.hewwbf.Model.AlumniData;
 import com.hello.hewwbf.Model.CalendarData;
 import com.hello.hewwbf.Model.ContactData;
+import com.hello.hewwbf.Model.FAQData;
 import com.hello.hewwbf.Model.InfoData;
+import com.hello.hewwbf.Model.InfoScoreData;
 import com.hello.hewwbf.Model.UserData;
 import com.hello.hewwbf.Service.UserServiceImpl;
 
@@ -183,14 +186,30 @@ public class Mycontroller {
         return this.userServiceImpl.getAdminByName(adminName);
     }
 
+    @ResponseBody
+    @GetMapping("/get/admin/{adminName}/{adminPassword}")
+    public boolean getAdminByName(@PathVariable String adminName, @PathVariable String adminPassword) {
+        System.out.println(adminName + " " + adminPassword);
+        return this.userServiceImpl.getAdminByNameSec(adminName, adminPassword);
+    }
+
 // ! <==============================End===========================================>
 
 
 
 
 
+    @ResponseBody
+    @PostMapping("/post/faq")
+    public void postFaq(@RequestBody FAQData faqData) {
+        this.userServiceImpl.postFaqData(faqData);
+    }
 
-
+    @ResponseBody
+    @GetMapping("/get/faqs")
+    public List<FAQData> getFaqs() {
+        return this.userServiceImpl.getAllFaqs();
+    }
 
 
 
@@ -205,23 +224,23 @@ public class Mycontroller {
 
 // ** Alumni Image **
 
-    @ResponseBody
-    @PostMapping("/post/alumni")
-    public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) throws IOException {
-        String uploadImage = userServiceImpl.uploadImage(file);
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(uploadImage);
-    }
+    // @ResponseBody
+    // @PostMapping("/post/alumni")
+    // public ResponseEntity<?> uploadImage(@RequestParam("image") MultipartFile file) throws IOException {
+    //     String uploadImage = userServiceImpl.uploadImage(file);
+    //     return ResponseEntity.status(HttpStatus.OK)
+    //             .body(uploadImage);
+    // }
 
-    @ResponseBody
-    @GetMapping("/get/alumni/{fileName}")
-    public ResponseEntity<?> downloadImage(@PathVariable String fileName) {
-        byte[] imageData = userServiceImpl.downloadImage(fileName);
-        return ResponseEntity.status(HttpStatus.OK)
-                .contentType(MediaType.valueOf("image/png"))
-                .body(imageData);
+    // @ResponseBody
+    // @GetMapping("/get/alumni/{fileName}")
+    // public ResponseEntity<?> downloadImage(@PathVariable String fileName) {
+    //     byte[] imageData = userServiceImpl.downloadImage(fileName);
+    //     return ResponseEntity.status(HttpStatus.OK)
+    //             .contentType(MediaType.valueOf("image/png"))
+    //             .body(imageData);
 
-    }
+    // }
 
 // ! <================================End=========================================>
 
@@ -273,9 +292,16 @@ public class Mycontroller {
 
     // ** GithubUserNameFetch **
     @ResponseBody
-    @GetMapping("/get/gitUserName")
-    public List<String> getGitUserNames() {
+    @GetMapping("/get/gitUserData")
+    public List<InfoData> getGitUserData() {
         return this.userServiceImpl.getGit();
+    }
+
+    // ** GithubScoreUpdate **
+    @ResponseBody
+    @PutMapping("/put/score")
+    public void postInfoScore(@RequestBody InfoScoreData scoreData) {
+        this.userServiceImpl.postScoreData(scoreData);
     }
 
     // ** CalendarDataFetch **
@@ -301,5 +327,16 @@ public class Mycontroller {
     }
     
 // ! <================================DashBoard End=========================================>
+
+    // @ResponseBody
+    // @PostMapping("/post/alumni")
+    // public void postAlumni(@RequestBody AlumniData alumniData){
+    //     this.userServiceImpl.postAlumniForm(alumniData);
+    // }
+    // @ResponseBody
+    // @GetMapping("/get/alumni")
+    // public List<AlumniData> getAlumni(){
+    //     return this.userServiceImpl.getAlumniForm();
+    // }
 
 }

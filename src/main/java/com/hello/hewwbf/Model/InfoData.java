@@ -33,7 +33,10 @@ public class InfoData {
     @Column
     private String codeforcesusername;
 
-    public InfoData(int userId, String githhubwebdev, String githhubappdev, String githubownername, String githubreponame, String githubblockchain, String githubdesign, String githubml, String codeforcesusername) {
+    @Column
+    private int score;
+
+    public InfoData(int userId,int score, String githhubwebdev, String githhubappdev, String githubownername, String githubreponame, String githubblockchain, String githubdesign, String githubml, String codeforcesusername) {
 
         this.githhubwebdev = githhubwebdev;
         this.githhubappdev = githhubappdev;
@@ -43,6 +46,7 @@ public class InfoData {
         this.githubdesign = githubdesign;
         this.githubml = githubml;
         this.codeforcesusername = codeforcesusername;
+        this.score=score;
     }
 
 
@@ -56,6 +60,14 @@ public class InfoData {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public int getScore() {
+        return this.score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public String getGithhubwebdev() {

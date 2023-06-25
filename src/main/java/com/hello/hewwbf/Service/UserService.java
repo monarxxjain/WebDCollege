@@ -1,12 +1,18 @@
 package com.hello.hewwbf.Service;
 
 
+import java.io.IOException;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.hello.hewwbf.Model.AdminData;
+import com.hello.hewwbf.Model.AlumniData;
 import com.hello.hewwbf.Model.CalendarData;
 import com.hello.hewwbf.Model.ContactData;
+import com.hello.hewwbf.Model.FAQData;
 import com.hello.hewwbf.Model.InfoData;
+import com.hello.hewwbf.Model.InfoScoreData;
 import com.hello.hewwbf.Model.UserData;
 
 
@@ -27,6 +33,8 @@ public interface UserService {
 
     public boolean getAdminByName(String adminName);
 
+    public boolean getAdminByNameSec(String adminName, String adminPassword);
+
     public void postContactData(ContactData contactData);
 
     public void postInfoData(InfoData infoData);
@@ -35,11 +43,24 @@ public interface UserService {
 
     public List<String> getCf();
 
-    public List<String> getGit();
+    public List<InfoData> getGit();
+
+    public void postScoreData(InfoScoreData scoreData);
 
     public List<CalendarData> getCalData();
 
     public void postCalData(CalendarData calendarData);
 
     public void delCalData(String timer);
+
+    // public void postAlumniForm( AlumniData alumniData);
+
+    // public List<AlumniData> getAlumniForm();
+
+    // public String uploadImage(Multipa ;
+
+    public void postFaqData(FAQData faqData);
+
+    public List<FAQData> getAllFaqs();
+
 }
