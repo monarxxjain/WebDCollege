@@ -307,6 +307,18 @@ public class UserServiceImpl implements UserService {
             }
         }
     }
+    @Override
+    public void putInfoSecData(InfoScoreData scoreData){
+        List<InfoData> list = this.infoBase.getAll();
+        for (InfoData info : list) {
+            if(info.getGithubownername().equals(scoreData.getGithubownername())){
+                info.setInfosecscore(scoreData.getInfosecscore());
+                InfoData scorePutter = info;
+                this.infoBase.save(scorePutter);
+                break;
+            }
+        }
+    }
     ///////////////////////////////////////////////////////////////
     // !! ----------------------------------- Info End -------------------------------------- !!\\
 

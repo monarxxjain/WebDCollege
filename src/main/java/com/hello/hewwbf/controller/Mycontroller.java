@@ -323,6 +323,11 @@ public class Mycontroller {
     public void putDesignScore(@RequestBody InfoScoreData scoreData) {
         this.userServiceImpl.putDesignData(scoreData);
     }
+    @ResponseBody
+    @PutMapping("/put/infosecscore")
+    public void putInfoSecScore(@RequestBody InfoScoreData scoreData) {
+        this.userServiceImpl.putInfoSecData(scoreData);
+    }
 
 ///////////////////////////////////////////////////////////////////////////////
 

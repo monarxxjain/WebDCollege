@@ -27,11 +27,14 @@ public class InfoScoreData {
     @Column
     private int designscore;
 
+    @Column
+    private int infosecscore;
+
     public InfoScoreData() {
     }
 
 
-    public InfoScoreData(int scoreId, String githubownername, int webscore, int appscore, int blockchainscore, int mlscore, int designscore) {
+    public InfoScoreData(int scoreId, String githubownername, int webscore, int infosecscore, int appscore, int blockchainscore, int mlscore, int designscore) {
         this.scoreId = scoreId;
         this.githubownername = githubownername;
         this.webscore = webscore;
@@ -39,6 +42,7 @@ public class InfoScoreData {
         this.blockchainscore = blockchainscore;
         this.mlscore = mlscore;
         this.designscore = designscore;
+        this.infosecscore = infosecscore;
     }
 
     public int getScoreId() {
@@ -97,4 +101,11 @@ public class InfoScoreData {
         this.designscore = designscore;
     }
     
+    public int getInfosecscore() {
+        return this.infosecscore;
+    }
+
+    public void setInfosecscore(int infosecscore) {
+        this.infosecscore = infosecscore;
+    }
 }

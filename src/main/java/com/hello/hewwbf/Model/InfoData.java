@@ -48,7 +48,10 @@ public class InfoData {
     @Column
     private int designscore;
 
-    public InfoData(int userId, int webscore, int appscore, int blockchainscore, int mlscore, int designscore, String githhubwebdev, String githhubappdev, String githubownername, String githubreponame, String githubblockchain, String githubdesign, String githubml, String codeforcesusername) {
+    @Column
+    private int infosecscore;
+
+    public InfoData(int userId, int infosecscore, int webscore, int appscore, int blockchainscore, int mlscore, int designscore, String githhubwebdev, String githhubappdev, String githubownername, String githubreponame, String githubblockchain, String githubdesign, String githubml, String codeforcesusername) {
 
         this.githhubwebdev = githhubwebdev;
         this.githhubappdev = githhubappdev;
@@ -63,6 +66,7 @@ public class InfoData {
         this.blockchainscore= blockchainscore;
         this.mlscore=mlscore;
         this.designscore=designscore;
+        this.infosecscore=infosecscore;
     }
 
 
@@ -179,8 +183,16 @@ public class InfoData {
         return this.designscore;
     }
 
-    public void setDesignscore(int designscore) {
-        this.designscore = designscore;
+    public void setDesignscore(int infosecscore) {
+        this.infosecscore = infosecscore;
+    }
+
+    public int getInfosecscore() {
+        return this.infosecscore;
+    }
+
+    public void setInfosecscore(int infosecscore) {
+        this.infosecscore = infosecscore;
     }
 
 
