@@ -51,7 +51,10 @@ public class InfoData {
     @Column
     private int infosecscore;
 
-    public InfoData(int userId, int infosecscore, int webscore, int appscore, int blockchainscore, int mlscore, int designscore, String githhubwebdev, String githhubappdev, String githubownername, String githubreponame, String githubblockchain, String githubdesign, String githubml, String codeforcesusername) {
+    @Column
+    private int fossscore;
+
+    public InfoData(int userId,int fossscore, int infosecscore, int webscore, int appscore, int blockchainscore, int mlscore, int designscore, String githhubwebdev, String githhubappdev, String githubownername, String githubreponame, String githubblockchain, String githubdesign, String githubml, String codeforcesusername) {
 
         this.githhubwebdev = githhubwebdev;
         this.githhubappdev = githhubappdev;
@@ -67,6 +70,7 @@ public class InfoData {
         this.mlscore=mlscore;
         this.designscore=designscore;
         this.infosecscore=infosecscore;
+        this.fossscore = fossscore;
     }
 
 
@@ -183,8 +187,8 @@ public class InfoData {
         return this.designscore;
     }
 
-    public void setDesignscore(int infosecscore) {
-        this.infosecscore = infosecscore;
+    public void setDesignscore(int designscore) {
+        this.designscore = designscore;
     }
 
     public int getInfosecscore() {
@@ -193,6 +197,14 @@ public class InfoData {
 
     public void setInfosecscore(int infosecscore) {
         this.infosecscore = infosecscore;
+    }
+
+    public int getFossscore() {
+        return this.fossscore;
+    }
+
+    public void setFossscore(int fossscore) {
+        this.fossscore = fossscore;
     }
 
 

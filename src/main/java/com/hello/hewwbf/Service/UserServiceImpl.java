@@ -300,9 +300,11 @@ public class UserServiceImpl implements UserService {
         List<InfoData> list = this.infoBase.getAll();
         for (InfoData info : list) {
             if(info.getGithubownername().equals(scoreData.getGithubownername())){
+                System.out.println("+++++++++++++++++++++++++++HELLO+++++++++++++++++++++++++++++++++++");
                 info.setDesignscore(scoreData.getDesignscore());
                 InfoData scorePutter = info;
                 this.infoBase.save(scorePutter);
+                System.out.println(scorePutter);
                 break;
             }
         }
@@ -313,6 +315,18 @@ public class UserServiceImpl implements UserService {
         for (InfoData info : list) {
             if(info.getGithubownername().equals(scoreData.getGithubownername())){
                 info.setInfosecscore(scoreData.getInfosecscore());
+                InfoData scorePutter = info;
+                this.infoBase.save(scorePutter);
+                break;
+            }
+        }
+    }
+    @Override
+    public void putFossData(InfoScoreData scoreData){
+        List<InfoData> list = this.infoBase.getAll();
+        for (InfoData info : list) {
+            if(info.getGithubownername().equals(scoreData.getGithubownername())){
+                info.setFossscore(scoreData.getFossscore());
                 InfoData scorePutter = info;
                 this.infoBase.save(scorePutter);
                 break;

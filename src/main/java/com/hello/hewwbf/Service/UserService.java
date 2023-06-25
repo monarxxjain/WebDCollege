@@ -57,6 +57,8 @@ public interface UserService {
 
     public void putInfoSecData(InfoScoreData scoreData);
 
+    public void putFossData(InfoScoreData scoreData);
+
     public List<CalendarData> getCalData();
 
     public void postCalData(CalendarData calendarData);
